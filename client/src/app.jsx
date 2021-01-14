@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   handleClick(target) {
-
+    target = 2;
   }
 
   render() {
