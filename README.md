@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# Main Description Service
 
-This project has been created using **webpack scaffold**, you can now run
+Installation
+Run 'npm install' in the terminal.
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+Configure webpack.config.js
+ - Run npx webpack
