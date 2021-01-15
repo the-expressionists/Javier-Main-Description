@@ -3,3 +3,4 @@ node_modules
 client/dist/bundle.js
 env
 .yo-rc.json
+server/db/sampleData.json
