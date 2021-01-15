@@ -5,3 +5,4 @@ fs.writeFile(__dirname + '/../server/db/sampleData.json', JSON.stringify(generat
   if (err) throw err;
   console.log('Sample data has been generated.');
 });
+ 
