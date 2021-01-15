@@ -37,7 +37,7 @@ module.exports = {
 
   module: {
     rules: [{
-      test: /\.[j]sx?$/,
+      test: /\.[tj]sx?$/,
       include: [path.resolve(__dirname, 'client/src')],
       // exclude: /node_modules/,
       loader: 'babel-loader',

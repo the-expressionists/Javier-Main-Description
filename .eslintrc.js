@@ -6,15 +6,15 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    // 'airbnb',
+    'airbnb',
   ],
   parser: 'babel-eslint',
   parserOptions: {
-    // ecmaFeatures: {
-    //   jsx: true,
-    // },
-    // ecmaVersion: 2020,
-    // sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2020,
+    sourceType: 'module',
     babelOptions: {
       configFile: './babel.config.json',
     },
