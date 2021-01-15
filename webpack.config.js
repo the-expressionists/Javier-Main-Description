@@ -37,9 +37,13 @@ module.exports = {
 
   module: {
     rules: [{
-      test: /\.[js]x?$/,
+      test: /\.[j]sx?$/,
       include: [path.resolve(__dirname, 'client/src')],
-      loader: 'babel-loader'
+      // exclude: /node_modules/,
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/react', '@babel/preset-env']
+      }
     }]
   },
 

@@ -1,10 +1,10 @@
-const fs = require('fs');
-let faker = require('faker');
+const mongoose = require('mongoose');
+const faker = require('faker');
+const db = require('./db.js');
 
-
-let generateFakes = function(n) {
+let generateData = (n) => {
   let items = [];
-
+  
   let americana = function() {
     return {
       itemID: faker.random.alphaNumeric(25), // Number(int),
@@ -23,9 +23,9 @@ let generateFakes = function(n) {
       thumbImageURL: 'https://source.unsplash.com/collection/1163637/100x100', // String
       liked: faker.random.boolean(), // boolean
       price: faker.random.number(1999), // number        
-     };
-  };
-  
+     }
+  }
+
   let variants = function() {
     if (Math.random() > .5) {
       let length = Math.floor(Math.random() * 6 + 1);
@@ -37,12 +37,12 @@ let generateFakes = function(n) {
           linkUrl: faker.internet.url()
         });
       }
-  
+
       return variants;
     }
     return [];
   }
-  
+
   let carouselImages = function() {
     let length = Math.floor(Math.random() * 11 + 1);
     let images = [];
@@ -52,10 +52,10 @@ let generateFakes = function(n) {
         imageUrl: 'https://source.unsplash.com/collection/1163637/400x400',
       });
     }
-  
+
     return images;
   }
-  
+
   let averageRating = () => (Math.floor((Math.random() * 5) + 1));
   
   //Add all English items
@@ -70,11 +70,17 @@ let generateFakes = function(n) {
     items[i].name = faker.name.firstName(1); // String,
     items[i].variants = variants();
   }
-
-  return items;
+  
+  return items.map( itemProps => {
+    let item = new db.Item(itemProps);
+    return item.save()
+  });
 }
 
-fs.writeFile(__dirname + '/../server/db/sampleData.json', JSON.stringify(generateFakes(100)), (err) => {
-  if (err) throw err;
-  console.log('Sample data has been generated.');
-});
+Promise.all(generateData(100))
+  .then( () => {
+    console.log(`Mongo Database seed successful`);
+  })
+  .catch( err => {
+    console.log(err);
+  })
