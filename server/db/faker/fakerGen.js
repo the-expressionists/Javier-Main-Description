@@ -1,4 +1,3 @@
-const fs = require('fs');
 let faker = require('faker');
 
 
@@ -74,10 +73,5 @@ let carouselImages = function() {
 }
 
 let averageRating = () => (Math.floor((Math.random() * 5) + 1));
-
-fs.writeFile(__dirname + '/../server/db/sampleData.json', JSON.stringify(generateFakes(100)), (err) => {
-  if (err) throw err;
-  console.log('Sample data has been generated.');
-});
 
 module.exports = generateFakes;

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const faker = require('faker');
 const db = require('./db.js');
 let generateData = require('./faker/fakerGen.js');
 

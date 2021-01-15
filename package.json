@@ -9,7 +9,7 @@
     "start": "nodemon index.js",
     "test": "jest",
     "seed": "node server/db/seed.js",
-    "makeSamples": "node faker/fakerGen.js"
+    "makeSamples": "node server/db/faker/generateData.js"
   },
   "repository": {
     "type": "git",
