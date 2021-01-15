@@ -32,11 +32,11 @@ const itemSchema = new mongoose.Schema({
  * @prop {String} category - Type of item being sold
  * @prop {Number} reviews - Number of reviews on item
  * @prop {Number} averageRating - Average rating between all reviews
- * @prop {Array, <{name: String, imageUrl: String}>} carouselImages - list of Image names with their image URLs for the item's image carousel
+ * @prop {{name: String, imageUrl: String}[]} carouselImages - list of Image names with their image URLs for the item's image carousel
  * @prop {String} shortDescription - Small description for the side text.
  * @prop {String} longDescription - Long description for the description text area
  * @prop {String} thumbImageURL - URL for the image of this item in thumbnails.
- * @prop {Array, <{name: String, imageUrl: String, linkUrl: String}>} variants - list of variations with their image URLs and link URLs for clickthroughs.
+ * @prop {{name: String, imageUrl: String, linkUrl: String}[]} variants - list of variations with their image URLs and link URLs for clickthroughs.
  * @prop {Boolean} liked - whether the user like this item yet or not.
  * @prop {Number} price - Price of the item
  */
