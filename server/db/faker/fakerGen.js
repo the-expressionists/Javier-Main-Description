@@ -23,7 +23,7 @@ let generateFakes = function(n) {
 
 let americana = function() {
   return {
-    itemID: faker.random.alphaNumeric(25), // Number(int),
+    itemID: faker.random.hexaDecimal(25), // Number(int),
     shortName: faker.commerce.productAdjective(), // String
     articleNumber: (
         faker.random.number(999) + '.' +
