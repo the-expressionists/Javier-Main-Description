@@ -22,6 +22,7 @@ const itemSchema = new mongoose.Schema({
   variants: {type: [{name: String, imageUrl: String, linkUrl: String}], required: true},
   liked: {type: Boolean, required: true},
   price: {type: Number, required: true},
+  breadcrumbs: {type: [{name: String, url: String}], required: true},
   // reviews: array of review objects
 });
 
@@ -40,8 +41,23 @@ const itemSchema = new mongoose.Schema({
  * @prop {Array.<{name: String, imageUrl: String, linkUrl: String}>} variants - list of variations with their image URLs and link URLs for clickthroughs.
  * @prop {Boolean} liked - whether the user like this item yet or not.
  * @prop {Number} price - Price of the item
+ * @prop {Array.<{name: String, url: String}>} breadcrumbs - ordered list of navigation breadcrumbs with links for the navigation bar.
  */
 
 const Item = mongoose.model('Item', itemSchema);
 
+const breadcrumbSchema = new mongoose.Schema({
+  name: {type: String, required: true},
+  url: {type: String, required: true},
+});
+
+/** Review document for our db
+ * @class breadcrumb
+ * @prop {String} name - clickable text that appears for the breadcrumb link
+ * @prop {String} url - destination for the breadcrumb link
+ */
+
+const Breadcrumb = mongoose.model('breadcrumb', breadcrumbSchema);
+
 module.exports.Item = Item;
+module.exports.Breadcrumb = Breadcrumb;
