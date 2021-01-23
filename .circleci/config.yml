@@ -6,3 +6,5 @@ workflows:
     jobs:
       - node/test
       - run -command test
+
+      circleci/config.yml 
