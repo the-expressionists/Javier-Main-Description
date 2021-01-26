@@ -4,6 +4,7 @@ import ProductCarousel from './components/productCarousel.js';
 import Summary from './components/summary.js';
 import Purchase from './components/purchase.js';
 import Navigation from './components/navigation.js';
+import ProductDetails from './components/productDetails.js';
 import sample from './sample/sampleProduct.js';
 
 class App extends React.Component {
@@ -33,27 +34,9 @@ class App extends React.Component {
                         <div id="product-item-description">
                           <Summary product={this.state.product} />
                           <div id="product-details-container">
-                            <div className="product-details">
-                              <div className="product-details-button">
-                                <div className="inline-block">Product details</div>
-                                <div className="inline-block">〉</div>
-                              </div>
-                            </div>
-                            <div className="product-details">
-                              <div className="product-details-button">
-                                <div className="inline-block">Product size</div>
-                                <div className="inline-block">〉</div>
-                              </div>
-                            </div>
-                            <div className="product-details">
-                              <p className="product-details-button">
-                                <div className="inline-block">
-                                  <div>Reviews</div>
-                                  <div>★★☆☆☆ (222)</div>
-                                </div>
-                                <div className="inline-block">〉</div>
-                              </p>
-                            </div>
+                            <ProductDetails product={this.state.product} title="Product Details"/>
+                            <ProductDetails product={this.state.product} title="Product size"/>
+                            <ProductDetails product={this.state.product} title="Reviews" isReview={true} reviewBar="★★☆☆☆ (222)" />
                           </div>
                         </div>
                         <Purchase product={this.state.product} />

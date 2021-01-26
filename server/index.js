@@ -11,7 +11,7 @@ const port = 3000;
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: true})); 
 
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, '..', 'client')));
 app.use(cors());
 app.use((req, res, next) => {
   console.log(`Serving ${req.method} at ${req.url}`);
@@ -20,8 +20,7 @@ app.use((req, res, next) => {
 
 app.get('/api/items', (req, res) => {
   db.Item.find({}, (msg) => {
-    console.log('QUERY successful');
-    console.log(msg);
+    console.log('Finding all products...');
     return msg;
   })
     .then( msg => {
