@@ -8,7 +8,7 @@
     "watch": "webpack -w",
     "start": "nodemon server/index.js",
     "test": "jest",
-    "mongo": "mongod --",
+    "mongodo": "mongod --dbpath /work/data",
     "seed": "node server/db/seed.js",
     "makeSamples": "node server/db/faker/generateData.js"
   },

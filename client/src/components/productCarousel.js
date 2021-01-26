@@ -1,12 +1,28 @@
 import React from 'react';
+import Gallery from './gallery.js';
 
 class ProductCarousel extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-
+      modalSwitch: true
     }
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({
+      modalSwitch: true
+    });   
+  }
+
+  closeModal() {
+    this.setState({
+      modalSwitch: false
+    })
   }
 
   render() {
@@ -15,7 +31,7 @@ class ProductCarousel extends React.Component {
         {
           this.props.product.carouselImages.map( image => {
             return (
-              <div className="product-carousel-item" key={image._id}>
+              <div onClick={this.openModal} onExit={this.closeModal} className="product-carousel-item" key={image._id}>
                   <span className="product-carousel-border">
                       <img className="product-carousel-image" src={image.imageUrl}></img>
                   </span>
@@ -23,6 +39,7 @@ class ProductCarousel extends React.Component {
             );
           })
         }
+        <Gallery display={this.state.modalSwitch} />
       </div>
     );
   } 
