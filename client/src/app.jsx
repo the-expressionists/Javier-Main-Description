@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import ProductCarousel from './components/productCarousel.js';
 import Summary from './components/summary.js';
 import Purchase from './components/purchase.js';
@@ -12,10 +13,30 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      product: sample
+      product: {
+        "carouselImages": [],
+        "breadcrumbs": [],
+        "variantProduct": false,
+        "variants": []
+      }
     };
 
     this.handleClick = this.handleClick.bind(this);
+  }
+  
+  componentDidMount() {
+    //Save a reference to the app to use setState inside the api call.
+    let component = this;
+
+    axios.get('http://localhost:3000/api/items/0xD3CCDCa59ddb05e75Bdfa8DCD')
+      .then(function ({data}) {
+        component.setState({
+          product: data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleClick(target) {

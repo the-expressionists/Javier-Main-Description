@@ -28,9 +28,8 @@ body {
     font-family: 'Noto IKEA', 'Noto Sans', 'Roboto', 'Open Sans', -apple-system, sans-serif !important;
 }
 
-.flex {
-    display: flex;
-    align-items: flex-start;
+img {
+    border-style: none;
 }
 
 #main {
@@ -41,7 +40,33 @@ button {
     border: none;
 }
 
-/* CSS Rules */
+a {
+    color: #484848;
+    background-color: transparent;
+}
+
+/* Generic rulesets */
+.underline {
+    text-decoration: underline;
+}
+
+.bottom-space {
+    margin-bottom: 1.25rem;
+}
+.filled-star {
+    color: black;
+}
+
+.empty-star {
+    color: #f5f5f5;
+}
+
+.flex {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Class and ID rulesets */
 
 /* having this container centers all content within the parent (main) */
 #page-container {
@@ -160,10 +185,6 @@ button {
     top: 0;
     color: transparent;
     cursor: pointer;
-}
-
-img {
-    border-style: none;
 }
 
 /* target for @media refactoring */
@@ -325,14 +346,6 @@ img {
     margin: 0 .05rem;
 }
 
-.filled-star {
-    color: black;
-}
-
-.empty-star {
-    color: #f5f5f5;
-}
-
 .review-star-item:last-child {
     line-height: normal;
     font-size: .75rem;
@@ -443,20 +456,11 @@ img {
     color: transparent;
 }
 
-a {
-    color: #484848;
-    background-color: transparent;
-}
-
 .product-purchase-buyer {
     margin-bottom: 1.25rem;
 }
 
 .product-purchase-availability {
-    margin-bottom: 1.25rem;
-}
-
-.bottom-space {
     margin-bottom: 1.25rem;
 }
 
