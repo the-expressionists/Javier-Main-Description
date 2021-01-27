@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductCarousel from './components/productCarousel.js';
+import axios from 'axios';
+import ProductGallery from './components/productGallery.js';
 import Summary from './components/summary.js';
 import Purchase from './components/purchase.js';
 import Navigation from './components/navigation.js';
@@ -12,10 +13,30 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      product: sample
+      product: {
+        "carouselImages": [],
+        "breadcrumbs": [],
+        "variantProduct": false,
+        "variants": []
+      }
     };
 
     this.handleClick = this.handleClick.bind(this);
+  }
+  
+  componentDidMount() {
+    //Save a reference to the app to use setState inside the api call.
+    let component = this;
+
+    axios.get('http://localhost:3000/api/items/0x023e608Af1fCE58E1454040A0')
+      .then(function ({data}) {
+        component.setState({
+          product: data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleClick(target) {
@@ -30,7 +51,7 @@ class App extends React.Component {
                 <div id="content-container">
                     <Navigation breadcrumbs={this.state.product.breadcrumbs} />
                     <div id="product-grid-container">
-                        <ProductCarousel product={this.state.product} />
+                        <ProductGallery product={this.state.product} />
                         <div id="product-item-description">
                           <Summary product={this.state.product} />
                           <div id="product-details-container">

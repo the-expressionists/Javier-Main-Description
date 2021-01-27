@@ -2,6 +2,8 @@ let faker = require('faker');
 let sv_women = require('faker/lib/locales/sv/name/first_name_women.js');
 let sv_men = require('faker/lib/locales/sv/name/first_name_men.js');
 
+const variantChance = .5;
+
 let generateFakes = (n) => {
   let items = [];
 
@@ -19,43 +21,51 @@ let makeFake = () => {
   item.name = faker.random.arrayElement(sv_women); // String,
   
   //English
-  item.variants = variants();
   item.itemID = faker.random.hexaDecimal(25); // Number(int)
   item.category = faker.commerce.product(); // String
   item.reviews = faker.random.number(250); // Number
   item.averageRating = averageRating(); // Number
   item.carouselImages = carouselImages(300, 400); // Array of objects {strings(url), and strings(url) for thumbnails}
   item.liked = faker.random.boolean(); // boolean
-  item.price = faker.random.number(1999); // number
+  item.price = faker.commerce.price(1999); // number
   item.shortName = faker.commerce.productAdjective() + ' ' + item.category; // String
-  item.shortDescription = item.shortName + ', ' + faker.commerce.productMaterial(); // String
-  item.longDescription = item.shortDescription + '. ' + faker.commerce.productDescription() + '. ' + faker.lorem.paragraph(); // String
+  item.longDescription = item.shortName + '. ' + faker.commerce.productDescription() + '. ' + faker.lorem.paragraph(); // String
   item.breadcrumbs = generateCrumbs(3, 5, item.category, (item.name + ' ' + item.shortName));
   item.thumbImageURL = 'https://source.unsplash.com/collection/1163637/100x100', // String
   item.articleNumber = (
       faker.random.number(999) + '.' +
       faker.random.number(999) + '.' +
       faker.random.number(999)
-    ); // String
+      ); // String
+  
+  //Not every product will have variants. Uses variantChance to determine chance of having variants.
+  if (Math.random() < variantChance) {
+    item.variantProduct = true;
+    item.variants = variants();
+    item.variantType = faker.random.arrayElement(item.variants.map( type => type.name));
+    item.variantCategory = faker.commerce.productMaterial();
+  } else {
+    item.variantProduct = false;
+  }
 
+      
   return item;
 };
 
 let variants = () => {
-  if (Math.random() > .5) {
-    let length = Math.floor(Math.random() * 6 + 1);
-    let variants = [];
-    for (let i = 0; i < length; i++) {
-      variants.push({
-        name: faker.random.arrayElement(sv_men),
-        imageUrl: 'https://source.unsplash.com/collection/1163637/54x54',
-        linkUrl: faker.internet.url()
-      });
-    }
-
-    return variants;
+  let length = Math.floor(Math.random() * 6 + 1);
+  let variants = [];
+  for (let i = 0; i < length; i++) {
+    variants.push({
+      name: (faker.random.arrayElement(sv_men) + ' ' +
+             faker.commerce.productAdjective() + ' ' +
+             faker.commerce.productMaterial()),
+      imageUrl: 'https://source.unsplash.com/collection/1163637/54x54',
+      linkUrl: faker.internet.url()
+    });
   }
-  return [];
+
+  return variants;
 }
 
 let carouselImages = (min, max) => {
