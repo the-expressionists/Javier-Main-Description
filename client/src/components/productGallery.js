@@ -1,12 +1,12 @@
 import React from 'react';
-import Gallery from './gallery.js';
+import Carousel from './carousel.js';
 
-class ProductCarousel extends React.Component {
+class ProductGallery extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalSwitch: true
+      modalDisaply: false
     }
 
     this.openModal = this.openModal.bind(this);
@@ -27,22 +27,22 @@ class ProductCarousel extends React.Component {
 
   render() {
     return (
-      <div id="product-carousel">
+      <div id="product-gallery">
         {
           this.props.product.carouselImages.map( image => {
             return (
-              <div onClick={this.openModal} onExit={this.closeModal} className="product-carousel-item" key={image._id}>
-                  <span className="product-carousel-border">
-                      <img className="product-carousel-image" src={image.imageUrl}></img>
+              <div onClick={this.openModal} className="product-gallery-item" key={image._id}>
+                  <span className="product-gallery-border">
+                      <img className="product-gallery-image" src={image.imageUrl}></img>
                   </span>
               </div>
             );
           })
         }
-        <Gallery display={this.state.modalSwitch} />
+        <Carousel display={this.state.modalDisplay} closeModal={this.closeModal} />
       </div>
     );
   } 
 }
 
-export default ProductCarousel;
+export default ProductGallery;

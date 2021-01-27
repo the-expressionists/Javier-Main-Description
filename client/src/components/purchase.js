@@ -55,18 +55,18 @@ class Purchase extends React.Component {
               </div>
               <div className="availability-spacer">
                 <div>
-                  <a href="#">Check in-store stock</a>
+                  <a href="#" className="underline">Check in-store stock</a>
                 </div>
               </div>
             </div>
             <div className="availability-assembly">
               <div className="availability-svg">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4H16V5L18 5V6H22V8H18V9H16V11H12.1439L10.7803 14H13V20H4V14H5.58336L6.947 11H4V4ZM6 6H14V9H6V6ZM8.58336 14L9.947 11H9.14391L7.78028 14H8.58336ZM6 16H11V18H6V16Z"></path>
+                  <path fillRule="evenodd" clipRule="evenodd" d="M4 4H16V5L18 5V6H22V8H18V9H16V11H12.1439L10.7803 14H13V20H4V14H5.58336L6.947 11H4V4ZM6 6H14V9H6V6ZM8.58336 14L9.947 11H9.14391L7.78028 14H8.58336ZM6 16H11V18H6V16Z"></path>
                 </svg>
               </div>
               <div className="availability-spacer">
-                <div>Have it assembled for you. <a href="#">Read More</a></div>
+                <div>Have it assembled for you. <a href="#" className="underline">Read More</a></div>
               </div>
             </div>
         </div>

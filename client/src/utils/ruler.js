@@ -1,14 +1,16 @@
-class Ruler(items) {
-  this.position = 0;
-  this.items = items;
+class Ruler {
+  constructor (items) {
+    this.position = 0;
+    this.items = items;
+  }
+  
+  leftClick() {
+  
+  }
+  
+  rightClick() {
+  
+  }
 }
 
-Ruler.prototype.leftClick = {
-
-}
-
-Ruler.prototype.rightClick = {
-
-}
-
-module.exports = new Ruler(items);
+module.exports = Ruler;
