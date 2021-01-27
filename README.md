@@ -1,7 +1,12 @@
-# Main Description Service
+Main Description Service
 
-Installation
-Run 'npm install' in the terminal.
+##Installation
 
-Configure webpack.config.js
- - Run npx webpack
+```
+$ npm install
+```
+
+##Run the server
+```
+$ npm run start
+```
