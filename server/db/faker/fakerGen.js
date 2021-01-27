@@ -56,11 +56,12 @@ let variants = () => {
   let length = Math.floor(Math.random() * 6 + 1);
   let variants = [];
   for (let i = 0; i < length; i++) {
+    let imgSize = 54 + i;
     variants.push({
       name: (faker.random.arrayElement(sv_men) + ' ' +
              faker.commerce.productAdjective() + ' ' +
              faker.commerce.productMaterial()),
-      imageUrl: 'https://source.unsplash.com/collection/1163637/54x54',
+      imageUrl: `https://source.unsplash.com/collection/1163637/${imgSize}x${imgSize}`,
       linkUrl: faker.internet.url()
     });
   }
