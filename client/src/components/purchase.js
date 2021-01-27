@@ -7,6 +7,7 @@ class Purchase extends React.Component {
     super(props);
 
     this.state = {
+      temp: 0
       //May need refactoring if there is no state to take care of.
     };
   }
@@ -24,7 +25,7 @@ class Purchase extends React.Component {
               <div>
                 <div className="price-tag-container">
                   <div className="price-tag">$</div>
-                  <div className="price-tag">{Math.floor(this.props.product.price)}</div>
+                  <div className="price-tag">{Math.floor(this.props.product.price) || 0}</div>
                   <div className="price-tag">{'.' + (Math.floor((this.props.product.price % 1) * 100) + '0').slice(-2)}</div>
                 </div>
               </div>
