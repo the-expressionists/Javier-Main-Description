@@ -8,6 +8,9 @@ import Navigation from './components/navigation.js';
 import ProductDetails from './components/productDetails.js';
 import sample from './sample/sampleProduct.js';
 
+//To display a specific item, change ID to the item's ID
+const ID = '0x5488D6Bea531AEeDa70f716d9';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +31,7 @@ class App extends React.Component {
     //Save a reference to the app to use setState inside the api call.
     let component = this;
 
-    axios.get('http://localhost:3000/api/items/0x023e608Af1fCE58E1454040A0')
+    axios.get('http://localhost:3000/api/items/' + ID)
       .then(function ({data}) {
         component.setState({
           product: data
