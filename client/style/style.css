@@ -101,6 +101,11 @@ a {
     width: 100%;
     padding: 1rem 0;
     border-bottom: 1px solid #dfdfdf;
+    cursor: pointer;
+}
+
+.nav-list:last-child {
+    cursor: text;
 }
 
 .nav-item {
@@ -112,10 +117,19 @@ a {
     /* border: solid 1px darkgrey; */
 }
 
-.nav-item:last-child {
-    color: #484848;
-    pointer-events: none;
-    cursor: auto;
+.hover:hover {
+    text-decoration: underline;
+}
+
+#last-nav {
+    text-decoration: none;
+    font-size: .75rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.nav-item:last-child > .space-around   {
+    display: none;
 }
 
 .nav-link {
@@ -124,6 +138,12 @@ a {
     line-height: 1.5;
     font-weight: 400;
     color: #111;
+}
+
+#nav-link-last {
+    color: #484848;
+    pointer-events: none;
+    cursor: text;
 }
 
 .nav-link > span {
@@ -530,7 +550,7 @@ a {
 }
 
 .exit-modal-button {
-    padding .5rem;
+    padding: .5rem;
     font-size: 2;
 }
 
