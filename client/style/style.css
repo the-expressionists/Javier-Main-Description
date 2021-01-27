@@ -28,8 +28,17 @@ body {
     font-family: 'Noto IKEA', 'Noto Sans', 'Roboto', 'Open Sans', -apple-system, sans-serif !important;
 }
 
+.flex {
+    display: flex;
+    align-items: flex-start;
+}
+
 #main {
-    outline: 0
+    display: block;
+}
+
+button {
+    border: none;
 }
 
 /* CSS Rules */
@@ -127,7 +136,7 @@ body {
     flex: none;
     /* try .625rem without border */
     margin: 0 .56rem 1.25rem;
-    width: calc(50% - 1.25rem);
+    width: calc(50% - 1.35rem);
     border: solid 1px cyan;
 }
 
@@ -215,8 +224,14 @@ img {
     font-weight: 700;
 }
 
+.carrot {
+    font-size: .62rem;
+}
+
 /* target for @media refactoring */
 #product-purchase {
+    display: flex;
+    flex-direction: column;
     grid-column-start: 9;
     grid-column-end: span 4;
     grid-row-start: 1;
@@ -231,14 +246,158 @@ img {
     margin-bottom: 2.5rem;
 }
 
-#product-purchase-stylepicker {
-    margin-bottom: 1.25rem;
+.price-container {
+    display: flex;
+    justify-content: space-between;
 }
 
-/* incomplete */
-#stylepicker-modaler-button {
-    display: flex
-    /* a whole bunch of other options........ */
+.price-infobox {
+    margin: 0 .3rem .5rem 0;
+    width: auto;
+}
+
+.price-name {
+    margin: 0 0 .25rem;
+    font-size: 1.375rem;
+    line-height: 1.45;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -.04rem;
+    color: black;
+}
+
+.purchase-text {
+    font-size: .875rem;
+    line-height: 1.42857;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #484848;
+}
+
+.price-tag-container {
+    display: flex;
+    justify-content: start;
+    flex-wrap: nowrap;
+}
+
+/* price tag is three spans. each needs it's own styling. */
+.price-tag-container div {
+    font-weight: 700;
+    color: #000;
+    white-space: pre;
+}
+
+.price-tag:first-child {
+    line-height: .9;
+    font-size: .6875rem;
+    margin-right: .0625rem;
+    padding-top: .09rem;
+}
+
+.price-tag:nth-child(2) {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.price-tag:nth-child(3) {
+    font-size: .6875rem;
+    line-height: .9;
+    margin: 0 0 0 .0625rem;
+    padding-top: .04rem;
+}
+
+.purchase-reviews {
+    background: transparent;
+    cursor: pointer;
+}
+
+.review-stars {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.review-star-item {
+    line-height: 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0 .05rem;
+}
+
+.filled-star {
+    color: black;
+}
+
+.empty-star {
+    color: #f5f5f5;
+}
+
+.review-star-item:last-child {
+    line-height: normal;
+    font-size: .75rem;
+    font-weight: 400;
+    margin: 0 .03rem;
+}
+
+.stylepicker-button {
+    border-top: 1px solid #dfdfdf;
+    background-color: white;   
+    width: 100%;
+}
+
+.stylepicker-button-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    min-height: 5.625rem;
+    color: #111;
+    font-size: .62rem;
+    line-height: 1.58;
+    font-weight: 700;
+}
+
+.variant-type {
+    color: #111;
+    font-size: .875rem;
+    line-height: 1.58;
+    font-weight: 700;
+    display: block;
+}
+
+.cart-add {
+    font-size: .875rem;
+    color: white;
+    border-radius: 60px;
+    width: 14em;
+    padding: 16px;
+    margin-right: 1em;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 64px;
+    background-color: #0058a3;
+    transition: background-color .2s ease-in-out;
+}
+
+.cart-add:hover {
+    background-color: #004f93;
+}
+
+.cart-like {
+    position: relative;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 60px;
+    border: 1px solid #dfdfdf;
+    transition: border .25s ease-in-out;
+}
+
+.cart-like:hover {
+    border-color: #929292;
 }
 
 #stylepicker-variants {
@@ -256,11 +415,12 @@ img {
     height: 4.375rem;
     width: 4.375rem;
     flex-shrink: 0;
-    transition-property: box-shadow, -webkit-box-shadow;
-    transition-duration: 0.2s, 0.2s;
-    transition-timing-function: ease-in-out, ease-in-out;
-    transition-delay: 0s, 0s;
     border-radius: 4px;
+    transition: box-shadow .2s ease-in-out;
+}
+
+.stylepicker-variant-item:hover {
+    box-shadow: inset 0px 0px 0px 1px #111;
 }
 
 .variant-image-container {
@@ -271,8 +431,6 @@ img {
     padding-bottom: 100%;
     background: #f5f5f5;
     box-sizing: border-box;
-    max-height: 54px;
-    max-width: 54px;
 }
 
 .variant-image {
@@ -290,30 +448,50 @@ a {
     background-color: transparent;
 }
 
-#product-purchase-buyer {
+.product-purchase-buyer {
     margin-bottom: 1.25rem;
 }
 
-#product-purchase-availability {
+.product-purchase-availability {
     margin-bottom: 1.25rem;
 }
 
-#availability-delivery {
+.bottom-space {
+    margin-bottom: 1.25rem;
+}
+
+.availability-delivery {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 1.25rem;
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid #dfdfdf;
 }
 
-#availability-stock {
+.availability-stock {
+    display: flex;
+    align-items: flex-start;
+    margin: 1.25rem 0;
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid #dfdfdf;
 }
 
-/* incomplete */
-#availability-assembly {
-    display: block;
+.availability-assembly {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 1.25rem;
+    padding-bottom: 1.25rem;
 }
 
-/* incomplete */
-.stylepicker-variant-item {
-    display: block;
+.availability-svg {
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    vertical-align: middle;
+}
+
+.availability-spacer {
+    padding: 0 .5rem 0 1rem;
 }
 
 /* 
