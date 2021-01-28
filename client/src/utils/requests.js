@@ -1,10 +1,10 @@
 const axios = require('axios');
 // import { Module } from 'webpack';
 
-module.exports.findOne = () => {
+module.exports.findOne = (callback) => {
     axios.get('http://localhost:3000/api/items/')
       .then(function ({data}) {
-        return data[0];
+        callback(data[0]);
       })
       .catch(function (error) {
         console.log(error);

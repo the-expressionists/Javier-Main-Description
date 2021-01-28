@@ -7,9 +7,10 @@ import Purchase from './components/purchase.js';
 import Navigation from './components/navigation.js';
 import ProductDetails from './components/productDetails.js';
 import sample from './sample/sampleProduct.js';
+import requests from './utils/requests.js';
 
 //To display a specific item, change ID to the item's ID
-const ID = '0x5488D6Bea531AEeDa70f716d9';
+// const ID = '0x5488D6Bea531AEeDa70f716d9';
 
 class MainDescription extends React.Component {
   constructor(props) {
@@ -29,17 +30,11 @@ class MainDescription extends React.Component {
   
   componentDidMount() {
     //Save a reference to the app to use setState inside the api call.
-    let component = this;
-
-    axios.get('http://localhost:3000/api/items/')
-      .then(function ({data}) {
-        component.setState({
-          product: data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+    requests.findOne(data => {
+      this.setState({
+        product: data
       });
+    });
   }
 
   handleClick(target) {
