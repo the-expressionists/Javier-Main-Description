@@ -6,7 +6,7 @@ class ProductGallery extends React.Component {
     super(props);
 
     this.state = {
-      modalDisaply: false
+      modalDisplay: false
     }
 
     this.openModal = this.openModal.bind(this);
@@ -14,14 +14,15 @@ class ProductGallery extends React.Component {
   }
 
   openModal() {
+    console.log('opening modal');
     this.setState({
-      modalSwitch: true
+      modalDisplay: true
     });   
   }
 
   closeModal() {
     this.setState({
-      modalSwitch: false
+      modalDisplay: false
     })
   }
 
@@ -39,7 +40,7 @@ class ProductGallery extends React.Component {
             );
           })
         }
-        <Carousel display={this.state.modalDisplay} closeModal={this.closeModal} />
+        <Carousel display={this.state.modalDisplay} carouselImages={this.props.product.carouselImages} closeModal={this.closeModal} />
       </div>
     );
   } 

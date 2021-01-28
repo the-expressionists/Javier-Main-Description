@@ -6,11 +6,13 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w",
-    "start": "nodemon server/index.js",
+    "nodemon": "nodemon server/index.js",
+    "node": "node server/index.js",
     "test": "jest",
-    "mongodo": "sudo systemctl start mongodb",
+    "mongodo": "sudo systemctl start mongod",
     "seed": "node server/db/seed.js",
-    "makeSamples": "node server/db/faker/generateData.js"
+    "makeSamples": "node server/db/faker/generateData.js",
+    "start": "./start.sh"
   },
   "repository": {
     "type": "git",
