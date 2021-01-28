@@ -5,6 +5,12 @@ let sv_men = require('faker/lib/locales/sv/name/first_name_men.js');
 //The chance that an item will have variants (.7 is 70%)
 const variantChance = 1;
 
+//How many carousel images to generate (inclusive)
+const generateRangeCarouselImages = [7, 9];
+
+//How many variants to generate (inclusive)
+const generateRangeVariants = [3, 5];
+
 let generateFakes = (n) => {
   let items = [];
 
@@ -54,7 +60,8 @@ let makeFake = () => {
 };
 
 let variants = () => {
-  let length = Math.floor(Math.random() * 6 + 1);
+  let range = generateRangeVariants;
+  let length = Math.floor(Math.random() * range[0] + (1 + range[1] - range[0]));
   let variants = [];
   for (let i = 0; i < length; i++) {
     let imgSize = 54 + i;
@@ -71,7 +78,8 @@ let variants = () => {
 }
 
 let carouselImages = (min, max) => {
-  let length = Math.floor(Math.random() * 9 + 1);
+  let range = generateRangeCarouselImages;
+  let length = Math.floor(Math.random() * range[0] + (1 + range[1] - range[0]));
   let images = [];
   for (let i = 0; i < length; i++) {
     //Generate a size string between minxmin and maxxmax
