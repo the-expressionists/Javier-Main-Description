@@ -31,7 +31,7 @@ class MainDescription extends React.Component {
     //Save a reference to the app to use setState inside the api call.
     let component = this;
 
-    axios.get('http://localhost:3000/api/items/' + ID)
+    axios.get('http://localhost:3000/api/items/')
       .then(function ({data}) {
         component.setState({
           product: data
@@ -48,27 +48,19 @@ class MainDescription extends React.Component {
 
   render() {
     return (
-      <div id="main">
-        <div id="page-container">
-            <div id="page-grid-container">
-                <div id="content-container">
-                    <Navigation breadcrumbs={this.state.product.breadcrumbs} />
-                    <div id="product-grid-container">
-                        <ProductGallery product={this.state.product} />
-                        <div id="product-item-description">
-                          <Summary product={this.state.product} />
-                          <div id="product-details-container">
-                            <ProductDetails product={this.state.product} title="Product Details"/>
-                            <ProductDetails product={this.state.product} title="Product size"/>
-                            <ProductDetails product={this.state.product} title="Reviews" isReview={true} reviewBar="★★☆☆☆ (222)" />
-                          </div>
-                        </div>
-                        <Purchase product={this.state.product} />
-                    </div>
-                </div>
-                <div className="component-filler grid-2">William's Image Carousel Component</div>
-                <div className="component-filler grid-3">Norman's Review Component</div>
+      <div>
+        <Navigation breadcrumbs={this.state.product.breadcrumbs} />
+        <div id="product-grid-container">
+            <ProductGallery product={this.state.product} />
+            <div id="product-item-description">
+              <Summary product={this.state.product} />
+              <div id="product-details-container">
+                <ProductDetails product={this.state.product} title="Product Details"/>
+                <ProductDetails product={this.state.product} title="Product size"/>
+                <ProductDetails product={this.state.product} title="Reviews" isReview={true} reviewBar="★★☆☆☆ (222)" />
+              </div>
             </div>
+            <Purchase product={this.state.product} />
         </div>
       </div>
     );
