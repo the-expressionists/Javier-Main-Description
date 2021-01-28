@@ -1,6 +1,7 @@
 .DS_STORE
 node_modules
-client/dist/bundle.js
+client/dist/container.bundle.js
+client/dist/mainDescription.bundle.js
 env
 .yo-rc.json
 server/db/sampleData.json
