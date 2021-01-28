@@ -8,14 +8,19 @@ const db = require('./db/db.js');
 const app = express();
 const port = 3000;
 
-app.use( bodyParser.json() );
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); 
 
-app.use(express.static(path.join(__dirname, '..', 'client')));
+app.use(express.static(path.join(__dirname, '..', 'client','dist')));
 app.use(cors());
 app.use((req, res, next) => {
   console.log(`Serving ${req.method} at ${req.url}`);
   next();
+});
+
+app.get('/container', (req, res) => {
+  console.log('container');
+  res.status(200).sendfile(path.join(__dirname, '..', 'client', 'dist', 'container.html'));
 });
 
 app.get('/api/items', (req, res) => {

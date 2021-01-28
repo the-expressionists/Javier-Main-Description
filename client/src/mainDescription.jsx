@@ -11,7 +11,7 @@ import sample from './sample/sampleProduct.js';
 //To display a specific item, change ID to the item's ID
 const ID = '0x5488D6Bea531AEeDa70f716d9';
 
-class App extends React.Component {
+class MainDescription extends React.Component {
   constructor(props) {
     super(props);
 
@@ -75,4 +75,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<MainDescription />, document.getElementById('main'));
