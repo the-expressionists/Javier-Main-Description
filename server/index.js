@@ -47,6 +47,17 @@ app.get('/api/items/:itemID', (req, res) => {
     });
 });
 
+app.get('/api/itemDetails', (req, res) => {
+  db.Item.findOne({})
+    .catch( err => {
+      console.log(err);
+      res.status(404).send(err);
+    })
+    .then( item => {
+      res.status(200).send(item);
+    });
+});
+
 app.listen(3000, () => {
   console.log(`Main Description Server listening on port ${port}`);
 });
