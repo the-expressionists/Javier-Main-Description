@@ -36,7 +36,7 @@ class Carousel extends React.Component {
   handleRightClick() {
     
   }
-
+  
   handleSlider() {
     
   }

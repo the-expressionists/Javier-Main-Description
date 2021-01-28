@@ -43,8 +43,7 @@ button {
 a {
     color: #484848;
     background-color: transparent;
-}
-
+  
 /* Generic rulesets */
 .underline {
     text-decoration: underline;
