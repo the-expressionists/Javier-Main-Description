@@ -2,7 +2,8 @@ let faker = require('faker');
 let sv_women = require('faker/lib/locales/sv/name/first_name_women.js');
 let sv_men = require('faker/lib/locales/sv/name/first_name_men.js');
 
-const variantChance = .5;
+//The chance that an item will have variants (.7 is 70%)
+const variantChance = 1;
 
 let generateFakes = (n) => {
   let items = [];
