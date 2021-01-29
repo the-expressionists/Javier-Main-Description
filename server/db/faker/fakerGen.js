@@ -5,11 +5,10 @@ let sv_men = require('faker/lib/locales/sv/name/first_name_men.js');
 //The chance that an item will have variants (.7 is 70%)
 const variantChance = 1;
 
-//How many carousel images to generate (inclusive)
-const generateRangeCarouselImages = [7, 9];
-
-//How many variants to generate (inclusive)
-const generateRangeVariants = [3, 5];
+//How many to generate (inclusive)
+const generateRangeCarouselImages = [6, 9];
+const generateRangeVariants = [4, 6];
+const generateRangeBreadcrumbs = [3, 5];
 
 let generateFakes = (n) => {
   let items = [];
@@ -37,7 +36,7 @@ let makeFake = () => {
   item.price = faker.commerce.price(1999); // number
   item.shortName = faker.commerce.productAdjective() + ' ' + item.category; // String
   item.longDescription = item.shortName + '. ' + faker.commerce.productDescription() + '. ' + faker.lorem.paragraph(); // String
-  item.breadcrumbs = generateCrumbs(3, 5, item.category, (item.name + ' ' + item.shortName));
+  item.breadcrumbs = generateCrumbs(item.category, (item.name + ' ' + item.shortName));
   item.thumbImageURL = 'https://source.unsplash.com/collection/1163637/100x100', // String
   item.articleNumber = (
       faker.random.number(999) + '.' +
@@ -60,8 +59,8 @@ let makeFake = () => {
 };
 
 let variants = () => {
-  let range = generateRangeVariants;
-  let length = Math.floor(Math.random() * range[0] + (1 + range[1] - range[0]));
+  let [min, max] = generateRangeVariants;
+  let length = Math.floor(Math.random() * (max - min + 1) + min);
   let variants = [];
   for (let i = 0; i < length; i++) {
     let imgSize = 54 + i;
@@ -77,14 +76,14 @@ let variants = () => {
   return variants;
 }
 
-let carouselImages = (min, max) => {
-  let range = generateRangeCarouselImages;
-  let length = Math.floor(Math.random() * range[0] + (1 + range[1] - range[0]));
+let carouselImages = (sizemin, sizemax) => {
+  let [min, max] = generateRangeCarouselImages;
+  let length = Math.floor(Math.random() * (max - min + 1) + min);
   let images = [];
   for (let i = 0; i < length; i++) {
     //Generate a size string between minxmin and maxxmax
-    let size = (Math.floor(Math.random() * (max - min + 1)) + min) + 'x' +
-               (Math.floor(Math.random() * (max - min + 1)) + min);
+    let size = (Math.floor(Math.random() * (sizemax - sizemin + 1)) + sizemin) + 'x' +
+               (Math.floor(Math.random() * (sizemax - sizemin + 1)) + sizemin);
 
     images.push({
       imageUrl: 'https://source.unsplash.com/collection/1163637/' + size,
@@ -96,13 +95,14 @@ let carouselImages = (min, max) => {
 
 let averageRating = () => (Math.floor((Math.random() * 5) + 1));
 
-let generateCrumbs = (min, max, category, itemName) => {
+let generateCrumbs = (category, itemName) => {
+  let [min, max] = generateRangeBreadcrumbs;
+  let breadcrumbs = [];
+  let n = Math.floor(Math.random() * (max - min + 1)) + min;
+  
   //Generates n + 1 breadcrumbs.
   //The last breadcrumb will be the item itself
   //The second to last breadcrumb will be the item's category  
-  let breadcrumbs = [];
-  let n = Math.floor(Math.random() * (max - min + 1)) + min;
-
   for (let i = 0; i < n - 1; i++) {
     breadcrumbs.push({
       name: faker.commerce.department(), // String
