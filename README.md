@@ -6,6 +6,9 @@ Main Description Service
 $ npm install
 ```
 
+## Install MongoDB
+https://docs.mongodb.com/manual/installation/
+
 ##Run the server
 ```
 $ npm run start
