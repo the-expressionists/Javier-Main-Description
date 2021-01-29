@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const db = require('./db/db.js');
 
@@ -18,9 +17,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/:itemID', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '..', 'client', 'dist'));  
+});
+
 app.get('/container', (req, res) => {
   console.log('container');
-  res.status(200).sendfile(path.join(__dirname, '..', 'client', 'dist', 'container.html'));
+  res.status(200).sendFile(path.join(__dirname, '..', 'client', 'dist', 'container.html'));
 });
 
 app.get('/api/items', (req, res) => {
