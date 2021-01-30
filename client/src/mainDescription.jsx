@@ -6,6 +6,7 @@ import Purchase from './components/purchase.js';
 import Navigation from './components/navigation.js';
 import ProductDetails from './components/productDetails.js';
 import requests from './utils/requests.js';
+// import "./style.scss";
 
 const descriptionScript = document.getElementById('descriptionScript');
 const itemID = requests.getID();
