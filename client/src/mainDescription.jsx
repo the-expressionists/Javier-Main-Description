@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import ProductGallery from './components/productGallery.js';
 import Summary from './components/summary.js';
 import Purchase from './components/purchase.js';
 import Navigation from './components/navigation.js';
 import ProductDetails from './components/productDetails.js';
-import sample from './sample/sampleProduct.js';
 import requests from './utils/requests.js';
+// import "./style.scss";
 
-//To display a specific item, change ID to the item's ID
-// const ID = '0x5488D6Bea531AEeDa70f716d9';
+const descriptionScript = document.getElementById('descriptionScript');
+const itemID = requests.getID();
 
 class MainDescription extends React.Component {
   constructor(props) {
@@ -18,6 +17,12 @@ class MainDescription extends React.Component {
 
     this.state = {
       product: {
+        "name": "",
+        "shortName": "",
+        "reviews": 0,
+        "variantType": "",
+        "variantCategory": "",
+        "price": 0,
         "carouselImages": [],
         "breadcrumbs": [],
         "variantProduct": false,
@@ -29,12 +34,23 @@ class MainDescription extends React.Component {
   }
   
   componentDidMount() {
-    //Save a reference to the app to use setState inside the api call.
-    requests.findOne(data => {
-      this.setState({
-        product: data
+    if (itemID === 'no id') {
+      requests.findOne(data => {
+        this.setState({
+          product: data
+        });
       });
-    });
+    } else {
+      requests.findByID(itemID, data => {
+        if (data !== "") {
+          this.setState({
+            product: data
+          });
+        } else {
+          console.log(`ERROR: Could not find item with ID: '${itemID}'`);
+        }
+      });
+    }
   }
 
   handleClick(target) {

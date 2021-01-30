@@ -304,7 +304,7 @@ a {
     line-height: 1.45;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: -.04rem;
+    letter-spacing: .015rem;
     color: black;
 }
 
@@ -513,6 +513,7 @@ a {
     height: 1.5rem;
     width: 1.5rem;
     vertical-align: middle;
+    flex-shrink: 0;
 }
 
 .availability-spacer {
@@ -643,12 +644,8 @@ a {
  */
 
  .component-filler {
-    display: block;
-    margin: 0;
-    padding: 350px 0;
-    text-align: center;
+    margin: 0 0 2.5rem;
     grid-column: 2/14;
-    /* border: solid 1px darkolivegreen; */
 }
 
 .vert-center {

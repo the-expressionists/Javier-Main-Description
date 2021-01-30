@@ -42,8 +42,13 @@ module.exports = {
     rules: [{
       test: /\.[tj]sx?$/,
       include: [path.resolve(__dirname, 'client/src')],
-      // exclude: /node_modules/,
-      loader: 'babel-loader',
+      loader: 
+      // [
+        'babel-loader',
+        // "style-loader",
+        // "css-loader",
+        // "sass-loader",
+      // ],
       options: {
         presets: ['@babel/react', '@babel/preset-env']
       }
