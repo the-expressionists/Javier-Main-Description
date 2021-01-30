@@ -2,5 +2,5 @@
 module.exports = {
   port: 'aws',
   localhost: 'localhost',
-  aws : '3.129.200.191:3000'
+  aws : '3.129.200.191'
 }
