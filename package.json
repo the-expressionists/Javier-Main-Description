@@ -4,7 +4,7 @@
   "description": "Joseph Toney's Main Description Service Module",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "watch": "webpack -w",
     "nodemon": "nodemon server/index.js",
     "node": "node server/index.js",
@@ -45,6 +45,8 @@
     "@babel/preset-typescript": "^7.12.7",
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "brotli-webpack-plugin": "^1.1.0",
+    "compression-webpack-plugin": "^7.1.2",
     "eslint": "^7.17.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
