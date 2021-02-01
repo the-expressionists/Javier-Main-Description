@@ -1,22 +1,17 @@
 import React from 'react';
+import styles from '../style/style.module';
 
-let ReviewStars = (props) => {
-  if (props.include === true) {
-    return (
-      <div className="review-stars">
-        {
-          Array.from({length: 5}).map( (undef, i) => {
-            return (
-              <div key={i} className={'review-star-item ' + (i < props.stars ? 'filled-star' : 'empty-star')}>★</div>
-            );
-          })
-        }
-        <div key='5' className='review-star-item'>{'(' + props.reviews + ')'}</div>
-      </div>
-    );
-  } else {
-    return null;
-  }
-};
+let ReviewStars = (props) => (
+  <div className={styles['review-stars']}>
+    {
+      Array.from({length: 5}).map( (undef, i) => {
+        return (
+          <div key={i} className={`${styles['review-star-item']}  ${(i < props.stars ? styles['filled-star'] : styles['empty-star'])}`}>★</div>
+        );
+      })
+    }
+    <div key='5' className={styles['review-star-item']}>{'(' + props.reviews + ')'}</div>
+  </div>
+);
 
 export default ReviewStars;

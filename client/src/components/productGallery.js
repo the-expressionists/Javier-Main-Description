@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from './carousel.js';
+import styles from '../style/style.module';
 
 class ProductGallery extends React.Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class ProductGallery extends React.Component {
 
   render() {
     return (
-      <div id="product-gallery">
+      <div className={styles['product-gallery']}>
         {
           this.props.product.carouselImages.map( image => {
             return (
-              <div onClick={this.openModal} className="product-gallery-item" key={image._id}>
-                  <span className="product-gallery-border">
-                      <img className="product-gallery-image" src={image.imageUrl}></img>
+              <div onClick={this.openModal} className={styles['product-gallery-item']} key={image._id}>
+                  <span className={styles['product-gallery-border']}>
+                      <img className={styles['product-gallery-image']} src={image.imageUrl}></img>
                   </span>
               </div>
             );

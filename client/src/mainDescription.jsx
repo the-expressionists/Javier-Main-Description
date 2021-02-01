@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductGallery from './components/productGallery.js';
-import Summary from './components/summary.js';
-import Purchase from './components/purchase.js';
-import Navigation from './components/navigation.js';
-import ProductDetails from './components/productDetails.js';
-import requests from './utils/requests.js';
-// import "./style.scss";
+import ProductGallery from './components/productGallery';
+import Summary from './components/summary';
+import Purchase from './components/purchase';
+import Navigation from './components/navigation';
+import ProductDetails from './components/productDetails';
+import requests from './utils/requests';
+import styles from './style/style.module';
 
 const descriptionScript = document.getElementById('descriptionScript');
 const itemID = requests.getID();
@@ -29,8 +29,6 @@ class MainDescription extends React.Component {
         "variants": []
       }
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
   
   componentDidMount() {
@@ -53,22 +51,18 @@ class MainDescription extends React.Component {
     }
   }
 
-  handleClick(target) {
-    console.log(target);
-  }
-
   render() {
     return (
-      <div>
+      <div className={styles['product-globals']}>
         <Navigation breadcrumbs={this.state.product.breadcrumbs} />
-        <div id="product-grid-container">
+        <div className={styles['product-grid-container']}>
             <ProductGallery product={this.state.product} />
-            <div id="product-item-description">
+            <div className={styles['product-item-description']}>
               <Summary product={this.state.product} />
-              <div id="product-details-container">
+              <div className={styles['product-details-container']}>
                 <ProductDetails product={this.state.product} title="Product Details"/>
                 <ProductDetails product={this.state.product} title="Product size"/>
-                <ProductDetails product={this.state.product} title="Reviews" isReview={true} reviewBar="★★☆☆☆ (222)" />
+                <ProductDetails product={this.state.product} title="Reviews" isReview={true} name="reviews-button" />
               </div>
             </div>
             <Purchase product={this.state.product} />
