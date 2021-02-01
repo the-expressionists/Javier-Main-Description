@@ -1,17 +1,20 @@
 Main Description Service
 
-##Installation
+## Installation
 
 ```
 $ npm install
 ```
 
-##Run the server
+## Install MongoDB
+https://docs.mongodb.com/manual/installation/
+
+## Run the server
 ```
 $ npm run start
 ```
 
-##Seed the service
+## Seed the service
 If this is your first time running the server, seed the mongo database with sample data:
 
 ```

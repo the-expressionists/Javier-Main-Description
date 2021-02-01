@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const db = require('./db/db.js');
+const expressStaticGzip = require('express-static-gzip');
 
 const app = express();
 const port = 3000;
@@ -10,7 +11,12 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); 
 
-app.use(express.static(path.join(__dirname, '..', 'client','dist')));
+const staticDir = path.join(__dirname, '..', 'client', 'dist');
+app.use('/', expressStaticGzip(staticDir, {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz']
+}));
+
 app.use(cors());
 app.use((req, res, next) => {
   console.log(`Serving ${req.method} at ${req.url}`);

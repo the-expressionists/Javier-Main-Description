@@ -1,6 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const isDevelopment = true;
 
 /*
@@ -29,6 +32,14 @@ module.exports = {
 
   plugins: [
     new webpack.ProgressPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(jss|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new CompressionPlugin()
   ],
 
   module: {

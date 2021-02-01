@@ -1,8 +1,8 @@
 .DS_STORE
 node_modules
-client/dist/container.bundle.js
-client/dist/mainDescription.bundle.js
 client/dist/mainDescription.*.css
+client/dist/container.bundle*
+client/dist/mainDescription.bundle*
 env
 .yo-rc.json
 server/db/sampleData.json
