@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Carousel from './carousel.js';
 import styles from '../style/style.module';
 
