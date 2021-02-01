@@ -8,7 +8,7 @@ const ports = {
 const port = ports.aws;
 
 module.exports.findOne = (callback) => {
-    axios.get(`http://${port}:3000/api/itemDetails/`)
+    axios.get(`http://${port}:3000/api/itemDetails`)
       .then(function ({data}) {
         callback(data);
       })
@@ -18,7 +18,7 @@ module.exports.findOne = (callback) => {
   };
 
 module.exports.findByID = (itemID, callback) => {
-  axios.get(`http://${port}:3000/api/items/${itemID}/`)
+  axios.get(`http://${port}:3000/api/items/${itemID}`)
     .then(function ({data}) {
       callback(data);
     })
