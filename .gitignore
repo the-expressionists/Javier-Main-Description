@@ -2,6 +2,7 @@
 node_modules
 client/dist/container.bundle.js
 client/dist/mainDescription.bundle.js
+client/dist/mainDescription.*.css
 env
 .yo-rc.json
 server/db/sampleData.json

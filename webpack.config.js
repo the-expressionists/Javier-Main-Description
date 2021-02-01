@@ -1,18 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-
-/*
- * SplitChunksPlugin is enabled by default and replaced
- * deprecated CommonsChunkPlugin. It automatically identifies modules which
- * should be splitted of chunk by heuristics using module duplication count and
- * module category (i. e. node_modules). And splits the chunks…
- *
- * It is safe to remove "splitChunks" from the generated configuration
- * and was added as an educational example.
- *
- * https://webpack.js.org/plugins/split-chunks-plugin/
- *
- */
+const TerserPlugin = require('terser-webpack-plugin');
+const isDevelopment = true;
 
 /*
  * We've enabled TerserPlugin for you! This minifies your app
@@ -21,8 +10,6 @@ const webpack = require('webpack');
  * https://github.com/webpack-contrib/terser-webpack-plugin
  *
  */
-
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -36,23 +23,54 @@ module.exports = {
     filename: '[name].bundle.js'
   },
 
-  plugins: [new webpack.ProgressPlugin()],
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
+  },
+
+  plugins: [
+    new webpack.ProgressPlugin(),
+  ],
 
   module: {
-    rules: [{
-      test: /\.[tj]sx?$/,
-      include: [path.resolve(__dirname, 'client/src')],
-      loader: 
-      // [
-        'babel-loader',
-        // "style-loader",
-        // "css-loader",
-        // "sass-loader",
-      // ],
-      options: {
-        presets: ['@babel/react', '@babel/preset-env']
+    rules: [
+      {
+        test: /\.[tj]sx?$/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.module\.s[ac]ss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: isDevelopment
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDevelopment
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDevelopment
+            }
+          }
+        ]
       }
-    }]
+    ],
   },
 
   optimization: {
