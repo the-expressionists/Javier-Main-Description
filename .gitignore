@@ -1,5 +1,6 @@
 .DS_STORE
 node_modules
+client/dist/mainDescription.*.css
 client/dist/container.bundle*
 client/dist/mainDescription.bundle*
 env
