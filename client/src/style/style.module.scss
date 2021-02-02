@@ -103,6 +103,21 @@ a {
 .nav-container {
     margin-bottom: 4rem;
     /* border: solid 1px blue; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    padding-right: 3rem;
+    display: inline-block;
+    position: relative;
+    top: 1.2rem;
+}
+
+.logo-img {
+    height: 54px;
+    width: auto;
 }
 
 .nav-list {
