@@ -30,6 +30,16 @@ let svgs = {
     <svg className={styles['svg-exit']} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
       <path fillRule="evenodd" clipRule="evenodd" d="M12 13.415l4.95 4.95 1.414-1.415-4.95-4.95 4.95-4.95-1.415-1.413-4.95 4.95-4.949-4.95L5.636 7.05l4.95 4.95-4.95 4.95 1.414 1.414 4.95-4.95z"></path>
     </svg>
+  ),
+  left: (
+    <svg className={styles['svg-exit']} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+      <path fillRule="evenodd" clipRule="evenodd" d="M7 12l8.001-8 1.414 1.414-6.587 6.587 6.586 6.587L15 20.002l-8-8.001z"></path>
+    </svg>
+  ),
+  right: (
+    <svg className={styles['svg-exit']} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+      <path fillRule="evenodd" clipRule="evenodd" d="M16.415 12.001l-8.001 8L7 18.588l6.587-6.586L7 5.414 8.415 4l8 8.001z"></path>
+    </svg>
   )
 };
 

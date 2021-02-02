@@ -595,6 +595,10 @@ a {
     display: none;
 }
 
+.carousel-images::-webkit-scrollbar {
+    display: visible;
+}
+
 .carousel-host {
     display: flex;
     flex-wrap: nowrap;
@@ -641,6 +645,36 @@ a {
     padding: .75rem 1.25rem;
     display: flex;
     justify-content: flex-end;
+}
+
+.right-click {
+    position: absolute;
+    top: calc(50% - 3rem);
+    cursor: pointer;
+    z-index: 1;
+    right: 1.25rem;
+}
+
+.left-click {
+    position: absolute;
+    top: calc(50% - 3rem);
+    cursor: pointer;
+    z-index: 1;
+    left: 1.25rem;
+}
+
+.click-inner {
+    padding: 0 .25rem;
+    height: 2.5rem;
+    border: 1px solid #dfdfdf;
+    border-radius: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    border-color: #929292;
 }
 
 .carousel-scrollbar {
