@@ -1,7 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import ReviewStars from './reviewStars.js';
 import Stylepicker from './stylepicker.js';
 import styles from '../style/style.module';
+import svgs from './svgs';
 
 class Purchase extends React.Component {
   constructor(props) {
@@ -31,16 +32,20 @@ class Purchase extends React.Component {
                 </div>
               </div>
             </div>
-            <div name="reviews-button">
+            <div>
               <ReviewStars stars={this.props.product.averageRating} include={true} reviews={this.props.product.reviews}/>
             </div>
         </div>
         <Stylepicker product={this.props.product} />
-        <div className={styles['bottom-space styles.flex']}>
-            <div className={styles['cart-add']}>Add to cart</div>
-            <div className={styles['cart-like']}>
-              <div>♡</div>
-            </div>
+        <div className={`${styles['bottom-space']} ${styles['flex']}`}>
+            <button className={styles['cart-add']}>
+              <div className={styles['cart-add-tocart']}>Add to cart</div>
+            </button>
+            <button className={styles['cart-like-button']}>
+              <div className={styles['cart-like']}>
+                {svgs.heart}
+              </div>
+            </button>
         </div>
         <div className={styles['product-purchase-availability']}>
             <div className={styles['availability-delivery']}>

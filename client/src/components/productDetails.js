@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import ReviewStars from './reviewStars.js';
 import styles from '../style/style.module';
 

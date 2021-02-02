@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles from './style/style.module';
 
 class Container extends React.Component {
   constructor(props) {
@@ -10,16 +11,16 @@ class Container extends React.Component {
 
   render() {
     return (
-      <div id="page-container">
-          <div id="page-grid-container">
-              <div id="content-container">
-                  <div id="main-description-component" className='component-filler'>
+      <div className={styles['page-container']}>
+          <div className={styles['page-grid-container']}>
+              <div className={styles['content-container']}>
+                  <div className={styles['component-filler']}>
                     <div id="main"></div>
                   </div>
-                  <div id="similar-items-component" className="component-filler grid-2">
+                  <div className={`${styles['component-filler']} ${styles['grid-2']}`}>
                     <div id="app"></div>
                   </div>
-                  <div id="reviews-component" className="component-filler grid-3">
+                  <div className={`${styles['component-filler']} ${styles['grid-3']}`}>
                     <div id="reviews"></div>
                   </div>
               </div>

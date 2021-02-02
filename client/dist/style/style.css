@@ -1,0 +1,45 @@
+*::before, *::after {
+  box-sizing: inherit;
+  outline: none;
+}
+
+html, body, div, p, h2, a, ul, li, img {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+div {
+  display: block;
+}
+
+body {
+  overflow-anchor: none;
+  display: block;
+  background: #fff;
+  color: #484848;
+  min-height: 100%;
+  font-size: .875rem;
+  line-height: 1.57;
+  font-family: 'Noto IKEA', 'Noto Sans', 'Roboto', 'Open Sans', -apple-system, sans-serif !important;
+}
+
+img {
+  border-style: none;
+}
+
+.main {
+  display: block;
+}
+
+button {
+  border: none;
+}
+
+a {
+  color: #484848;
+  background-color: transparent;
+}
