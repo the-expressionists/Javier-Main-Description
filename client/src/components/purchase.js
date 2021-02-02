@@ -32,7 +32,7 @@ class Purchase extends React.Component {
                 </div>
               </div>
             </div>
-            <div name="reviews-button">
+            <div>
               <ReviewStars stars={this.props.product.averageRating} include={true} reviews={this.props.product.reviews}/>
             </div>
         </div>
