@@ -1,7 +1,7 @@
 const { HOST, USER, PASSWORD, DB, PORT } = require('./db.config');
+const { Client } = require('pg');
 
-const Pool = require('pg').Pool
-const pool = new Pool({
+const client = new Client({
   user: USER,
   host: HOST,
   database: DB,
@@ -9,10 +9,15 @@ const pool = new Pool({
   port: PORT,
 });
 
+client.connect((err) => {
+  err ? console.error(err) :
+    console.log('Connected to DB!')
+});
+
 const getItems = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('SELECT * FROM items WHERE product_id < 10', (error, results) => {
+  client.query('SELECT * FROM items WHERE product_id < 10', (error, results) => {
     if (error) {
       throw error
     }
@@ -22,5 +27,5 @@ const getItems = (request, response) => {
 
 module.exports = {
   getItems,
-  pool
+  client
 };

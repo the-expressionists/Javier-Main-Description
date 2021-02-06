@@ -28,8 +28,10 @@ const writeTable = (tableData, count, writer, encoding, callback) => {
 }
 
 console.time('CSV write time');
-writeTable(productData, 1001, productsCsv, 'utf-8', () => productsCsv.end())
-writeTable(carouselImages, 3000, imagesCsv, 'utf-8', () => imagesCsv.end())
-writeTable(variants, 2000, variantsCsv, 'utf-8', () => variantsCsv.end())
-writeTable(breadcrumbs, 3000, breadcrumbsCsv, 'utf-8', () => breadcrumbsCsv.end())
-console.timeEnd('CSV write time')
+writeTable(productData, 1000001, productsCsv, 'utf-8', () => productsCsv.end())
+writeTable(carouselImages, 3000000, imagesCsv, 'utf-8', () => imagesCsv.end())
+writeTable(variants, 2000000, variantsCsv, 'utf-8', () => variantsCsv.end())
+writeTable(breadcrumbs, 3000000, breadcrumbsCsv, 'utf-8', () => {
+  console.timeEnd('CSV write time')
+  breadcrumbsCsv.end()
+})

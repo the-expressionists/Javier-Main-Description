@@ -1,21 +1,7 @@
-const { HOST, USER, PASSWORD, DB, PORT } = require('./db.config');
-const { Client } = require('pg');
+const { client } = require('./db.js');
 
-const client = new Client({
-  user: USER,
-  host: HOST,
-  database: DB,
-  password: PASSWORD,
-  port: PORT,
-});
-
-client.connect((err) => {
-  err ? console.error(err) :
-    console.log('Connected to DB!')
-});
-
-console.time('seed time');
-
+console.time('total seed time');
+console.time('product seed time');
 // insert products
 client.query(
   `COPY products (name, category, reviews, averageRating, liked,\
@@ -24,7 +10,9 @@ client.query(
     '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/products.csv'DELIMITER ',' CSV HEADER;`
 )
 .then(() => {
-  console.log('products successfully seeded!');
+  console.timeEnd('product seed time');
+  console.log('\n');
+  console.time('carouselImages seed time');
 })
 .catch(err => console.error(err));
 
@@ -34,7 +22,9 @@ client.query(
     '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/images.csv'DELIMITER ',' CSV HEADER;`
 )
 .then(() => {
-  console.log('carouselImages successfully seeded!');
+  console.timeEnd('carouselImages seed time');
+  console.log('\n');
+  console.time('breadcrumbs seed time')
 })
 .catch(err => console.error(err));
 
@@ -45,7 +35,9 @@ client.query(
     '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/breadcrumbs.csv'DELIMITER ',' CSV HEADER;`
 )
 .then(() => {
-  console.log('breadcrumbs successfully seeded!');
+  console.timeEnd('breadcrumbs seed time');
+  console.log('\n');
+  console.time('variants seed time');
 })
 .catch(err => console.error(err));
 
@@ -55,8 +47,9 @@ client.query(
     '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/variants.csv'DELIMITER ',' CSV HEADER;`
 )
 .then(() => {
-  console.log('variants successfully seeded!');
-  console.timeEnd('seed time');
+  console.timeEnd('variants seed time');
+  console.log('DB successfully seeded!\n');
+  console.timeEnd('total seed time');
   client.end();
 })
 .catch(err => console.error(err));
