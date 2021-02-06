@@ -6,3 +6,7 @@ client/dist/mainDescription.bundle*
 env
 .yo-rc.json
 server/db/sampleData.json
+
+// SDC
+
+server/sdc/db.config.js
