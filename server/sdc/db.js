@@ -12,7 +12,7 @@ const pool = new Pool({
 const getItems = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('SELECT * FROM items', (error, results) => {
+  pool.query('SELECT * FROM items WHERE product_id < 10', (error, results) => {
     if (error) {
       throw error
     }

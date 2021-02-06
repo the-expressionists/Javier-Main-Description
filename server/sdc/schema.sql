@@ -88,5 +88,5 @@ CREATE TABLE IF NOT EXISTS variants (
 
 -- ---
 -- excute file from terminal
--- psql -U javier postgres < schema.sql
+-- psql -U javier postgres < server/sdc/schema.sql
 -- ---
