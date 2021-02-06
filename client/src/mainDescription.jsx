@@ -30,7 +30,7 @@ class MainDescription extends React.Component {
       }
     };
   }
-  
+
   componentDidMount() {
     if (itemID === 'no id') {
       requests.findOne(data => {

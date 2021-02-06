@@ -5,7 +5,7 @@ const ports = {
 }
 
 //Select which port to use
-const port = ports.aws;
+const port = ports.localhost;
 
 module.exports.findOne = (callback) => {
     axios.get(`http://${port}:3000/api/itemDetails`)
@@ -18,7 +18,7 @@ module.exports.findOne = (callback) => {
   };
 
 module.exports.findByID = (itemID, callback) => {
-  axios.get(`http://${port}:3000/api/items/${itemID}`)
+  axios.get(`http://${port}:3000/${itemID}`)
     .then(function ({data}) {
       callback(data);
     })
@@ -30,7 +30,9 @@ module.exports.findByID = (itemID, callback) => {
 module.exports.getID = () => {
   let idElement = document.getElementById('main').attributes.itemid;
   if (idElement = undefined) {
+    console.log("NO ID")
     return 'no id';
   }
+  console.log('ID')
   return document.getElementById('main').attributes.itemid.value;
 };
