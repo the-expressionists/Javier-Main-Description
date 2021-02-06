@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS carouselImages (
   carouselUrl VARCHAR NOT NULL,
   product_id INT NOT NULL,
   PRIMARY KEY(carouselImages_id),
-  CONSTRAINT fk_item
+  CONSTRAINT fk_products
     FOREIGN KEY (product_id)
       REFERENCES products(product_id)
 );
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS breadcrumbs (
   url6 VARCHAR NOT NULL,
   product_id INT NOT NULL,
   PRIMARY KEY(breadcrumbs_id),
-  CONSTRAINT fk_item
+  CONSTRAINT fk_products
     FOREIGN KEY (product_id)
       REFERENCES products(product_id)
 );
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS variants (
   linkUrl VARCHAR NOT NULL,
   product_id INT NOT NULL,
   PRIMARY KEY(variants_id),
-  CONSTRAINT fk_item
+  CONSTRAINT fk_products
     FOREIGN KEY (product_id)
       REFERENCES products(product_id)
 );
