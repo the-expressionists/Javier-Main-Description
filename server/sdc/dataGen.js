@@ -1,95 +1,76 @@
-const f = require('faker');
+const faker = require('faker');
 
-const randNum = (min, max) => f.random.number({ 'min': min, 'max': max });
+const randNum = (min, max) => faker.random.number({ 'min': min, 'max': max });
 
-const itemData = () => {
-  item = {};
-
+const productData = () => {
   // items tend to have human names
-  item.name = `${f.name.firstName()} ${f.commerce.productName()}`;
-  item.category = f.commerce.product();
-  item.reviews = randNum(1, 5);
-  item.carouselImages = imageGenerator(300, 400);
-  item.averageRating = randNum(1, 5);
-  item.liked = f.random.boolean();
-  item.price = f.commerce.price(1999);
-  item.shortName = f.commerce.productAdjective() + ' ' + item.category;
-  item.longDescription = f.lorem.paragraph();
-  item.breadcrumbs = breadcrumbs(item.category, item.shortName);
-  item.thumbImageUrl = `https://source.unsplash.com/collection/1163637/100x100`;
-  item.articleNumber = `${f.random.number(999)}.${f.random.number(999)}.${f.random.number(999)}`;
-
+  const name = `${faker.name.firstName()} ${faker.commerce.productName()}`;
+  const category = faker.commerce.product();
+  const reviews = randNum(1, 5);
+  //carouselImages = imageGenerator(300, 400);
+  const averageRating = randNum(1, 5);
+  const liked = faker.random.boolean();
+  const price = faker.commerce.price(1999);
+  const shortName = faker.commerce.productAdjective() + ' ' + category;
+  const longDescription = faker.lorem.paragraph();
+  //breadcrumbs = breadcrumbs(category, shortName);
+  const thumbImageUrl = `https://source.unsplash.com/collection/1163637/100x100`;
+  const articleNumber = `${faker.random.number(999)}.${faker.random.number(999)}.${faker.random.number(999)}`;
+  let variantProduct = false;
+  let variantType = null;
+  let  variantCategory = null;
   // not all items will have variants
   // 66.6% chance of variant
+
+  let data = `${name},${category},${reviews},${averageRating},${liked},${price},\
+  ${shortName},${longDescription},${thumbImageUrl},${articleNumber},`;
+
   if (randNum(1, 5) <= 3) {
-    item.variantProduct = true;
-    item.variants = variants();
-    item.variantType = f.random.arrayElement(item.variants.map( type => type.name));
-  } else {
-    item.variantProduct = false;
+    variantProduct = true;
+    //variants = variants();
+    //variantType = faker.random.arrayElement(variants.map( type => type.name));
+    variantType = `${faker.name.firstName()} ${faker.commerce.productName()}`;
+    variantCategory = faker.commerce.product();
+    return data += `${variantProduct},${variantType},${variantCategory}`;
   }
-  return item;
+  return data += `${variantProduct},${variantType},${variantCategory}`;
 };
 
-// will return array of 4 - 6 random images
-const imageGenerator = (min, max) => {
-  const imageCount = randNum(6, 9);
 
-  let images = [];
-  for (let i = 0; i < imageCount; i++) {
-    const size =  `${randNum(min, max)}x${randNum(min, max)}`;
-    images.push({
-      imageUrl: 'https://source.unsplash.com/collection/1163637/' + size
-    })
-  }
-  return images;
+const carouselImages = () => {
+  const size =  `${randNum(300, 400)}x${randNum(300, 400)}`;
+  const imageUrl = 'https://source.unsplash.com/collection/1163637/' + size;
+  const product_id = randNum(1, 1000);
+
+  return `${imageUrl},${product_id}`;
 }
 
-// will return array of
 const variants = () => {
-  const variantCount = randNum(4,6);
+  const name =  `${faker.name.firstName()} ${faker.commerce.productName()}`;
+  const imageUrl = `https://source.unsplash.com/collection/1163637/${randNum(54, 58)}x${randNum(55, 59)}`;
+  const linkUrl = faker.internet.url();
+  const product_id = randNum(1, 1000);
 
-  let variants = [];
-
-  for (let i = 0; i < variantCount; i++) {
-    variants.push({
-      name:  `${f.name.firstName()} ${f.commerce.productName()}`,
-      imageUrl: `https://source.unsplash.com/collection/1163637/${54 + i}x${54 + 1}`,
-      linkUrl: f.internet.url()
-    });
-  }
-
-  return variants;
+  return `${name},${imageUrl},${linkUrl},${product_id}`;
 }
 
-const breadcrumbs = (category, name) => {
-  const crumbCount = randNum(3, 5);
+const breadcrumbs = (max) => {
+  let data = ``;
+  const product_id = randNum(1, 1000);
 
-  let breadcrumbs = [];
-
-  for (let i = 0; i < crumbCount - 1; i++) {
-    breadcrumbs.push({
-      name: f.commerce.department(),
-      url: f.internet.url()
-    })
+  for (let i = 0; i < 6; i++) {
+    let name = faker.commerce.department();
+    let url = faker.internet.url();
+      data += `${name},${url},`;
   }
+  data += `${product_id}`;
 
-  // final breadbrumbs lead to current item
-  // start with current item category
-  breadcrumbs.push({
-    name: category, // String
-    url: f.internet.url() //String
-  });
-
-  // add the reference for the current item
-  breadcrumbs.push({
-    name: name, // String
-    url: f.internet.url() //String
-  });
-
-  return breadcrumbs;
+  return data;
 }
 
 module.exports = {
-  itemData
+  productData,
+  carouselImages,
+  variants,
+  breadcrumbs
 }

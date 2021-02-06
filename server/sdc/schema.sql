@@ -11,8 +11,8 @@ CREATE DATABASE javier_items;
 -- Table 'item'
 --
 -- ---
-CREATE TABLE IF NOT EXISTS items (
-  item_id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS products (
+  product_id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   category VARCHAR NOT NULL,
   reviews SMALLINT NOT NULL,
@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS items (
 CREATE TABLE IF NOT EXISTS carouselImages (
   carouselImages_id SERIAL,
   carouselUrl VARCHAR NOT NULL,
-  item_id INT NOT NULL,
+  product_id INT NOT NULL,
   PRIMARY KEY(carouselImages_id),
   CONSTRAINT fk_item
-    FOREIGN KEY (item_id)
-      REFERENCES items(item_id)
+    FOREIGN KEY (product_id)
+      REFERENCES products(product_id)
 );
 
 -- ---
@@ -50,13 +50,23 @@ CREATE TABLE IF NOT EXISTS carouselImages (
 
 CREATE TABLE IF NOT EXISTS breadcrumbs (
   breadcrumbs_id SERIAL,
-  name VARCHAR NOT NULL,
-  url VARCHAR NOT NULL,
-  item_id INT NOT NULL,
+  br1 VARCHAR NOT NULL,
+  br2 VARCHAR NOT NULL,
+  br3 VARCHAR NOT NULL,
+  br4 VARCHAR NOT NULL,
+  br5 VARCHAR NOT NULL,
+  br6 VARCHAR NOT NULL,
+  url1 VARCHAR NOT NULL,
+  url2 VARCHAR NOT NULL,
+  url3 VARCHAR NOT NULL,
+  url4 VARCHAR NOT NULL,
+  url5 VARCHAR NOT NULL,
+  url6 VARCHAR NOT NULL,
+  product_id INT NOT NULL,
   PRIMARY KEY(breadcrumbs_id),
   CONSTRAINT fk_item
-    FOREIGN KEY (item_id)
-      REFERENCES items(item_id)
+    FOREIGN KEY (product_id)
+      REFERENCES products(product_id)
 );
 
 -- ---
@@ -69,11 +79,11 @@ CREATE TABLE IF NOT EXISTS variants (
   name VARCHAR NOT NULL,
   imageUrl VARCHAR NOT NULL,
   linkUrl VARCHAR NOT NULL,
-  item_id INT NOT NULL,
+  product_id INT NOT NULL,
   PRIMARY KEY(variants_id),
   CONSTRAINT fk_item
-    FOREIGN KEY (item_id)
-      REFERENCES items(item_id)
+    FOREIGN KEY (product_id)
+      REFERENCES products(product_id)
 );
 
 -- ---

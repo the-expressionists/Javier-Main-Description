@@ -1,91 +1,61 @@
-const { itemData } = require('./dataGen.js');
-const { pool } = require('./db.js');
+const { HOST, USER, PASSWORD, DB, PORT } = require('./db.config');
+const { Client } = require('pg');
 
-const seed = () => {
-  let itemCount = 0;
-  for (let i = 1; i <= 100; i++) {
+const client = new Client({
+  user: USER,
+  host: HOST,
+  database: DB,
+  password: PASSWORD,
+  port: PORT,
+});
 
-    // prodcut data
-    const item = itemData();
+client.connect((err) => {
+  err ? console.error(err) :
+    console.log('Connected to DB!')
+});
+console.time('seed');
+// insert products
+client.query(
+  `COPY products (name, category, reviews, averageRating, liked,\
+    price, shortName, longDescription, thumbImageURL, articleNumber,\
+    variantProduct, variantType, variantCategory) FROM
+    '/Users/javierzarate/Desktop/test/csvData/products.csv'DELIMITER ',' CSV HEADER;`
+)
+.then(() => {
+  console.log('products successfully seeded!');
+})
+.catch(err => console.error(err));
 
-    // seed item table
-    pool.query(`INSERT INTO items (name, category, reviews, averageRating, liked,\
-      price, shortName, longDescription, thumbImageURL, articleNumber,\
-      variantProduct, variantType, variantCategory) VALUES ($1, $2, $3, $4, $5,\
-      $6, $7, $8, $9, $10, $11, $12, $13);`,
-      [item.name, item.category, item.reviews, item.averageRating, item.liked,
-      item.price, item.shortName, item.longDescription, item.thumbImageUrl,
-      item.articleNumber, item.variantProduct, item.variantType, item.variantCategory],
-      (err, res) => {
-        err ? console.error(err) :
-        // seed carouselImages table
-        carouselImages(item.carouselImages, i);
-        breadcrumbs(item.breadcrumbs, i);
+// insert carouselImages
+client.query(
+  `COPY carouselImages (carouselUrl, product_id) FROM
+    '/Users/javierzarate/Desktop/test/csvData/images.csv'DELIMITER ',' CSV HEADER;`
+)
+.then(() => {
+  console.log('carouselImages successfully seeded!');
+})
+.catch(err => console.error(err));
 
-        // not all products have variants
-        if (item.variantProduct) {
-          variants(item.variants, i)
-        }
-        itemCount++;
-        console.log(`items: ${itemCount}`);
-      });
-  }
-};
+console.time('start');
+// insert breadcrumbs
+client.query(
+  `COPY breadcrumbs (br1, url1, br2, url2, br3, url3, br4, url4, br5, url5,\
+    br6, url6, product_id) FROM
+    '/Users/javierzarate/Desktop/test/csvData/breadcrumbs.csv'DELIMITER ',' CSV HEADER;`
+)
+.then(() => {
+  console.log('breadcrumbs successfully seeded!');
+})
+.catch(err => console.error(err));
 
-const carouselImages = (images, item_id) => {
-  let queryStr = `INSERT INTO carouselImages (carouselUrl, item_id) VALUES `;
-  let values = [];
-  let index = 0;
-  for (let i = 1; i <= images.length * 2; i+=2) {
-    queryStr += `($${i}, $${i + 1}),`
-    values.push(images[index].imageUrl);
-    values.push(item_id);
-    index++;
-  }
-  queryStr = queryStr.slice(0,-1);
-
-  pool.query(queryStr, values, (err, res) => {
-    err ? console.error(err) :
-      null;
-  });
-};
-
-const breadcrumbs = (bc, item_id) => {
-  let queryStr = `INSERT INTO breadcrumbs (name, url, item_id) VALUES `;
-  let values = [];
-  let index = 0;
-  for (let i = 1; i <= bc.length * 3; i+=3) {
-    queryStr += `($${i}, $${i + 1}, $${i + 2}),`
-    values.push(bc[index].name);
-    values.push(bc[index].url);
-    values.push(item_id);
-    index++;
-  }
-  queryStr = queryStr.slice(0,-1);
-  pool.query(queryStr, values, (err, res) => {
-    err ? console.error(err) :
-      null;
-  });
-};
-
-const variants = (v, item_id) => {
-  let queryStr = `INSERT INTO variants (name, imageUrl, linkUrl, item_id) VALUES `;
-  let values = [];
-  let index = 0;
-  for (let i = 1; i <= v.length * 4; i+=4) {
-    queryStr += `($${i}, $${i + 1}, $${i + 2}, $${i + 3}),`
-    values.push(v[index].name);
-    values.push(v[index].imageUrl);
-    values.push(v[index].linkUrl);
-    values.push(item_id);
-    index++;
-  }
-  queryStr = queryStr.slice(0,-1);
-  pool.query(queryStr, values, (err, res) => {
-    err ? console.error(err) :
-      null;
-  });
-};
-
-seed();
-// // pool.end().then(() => console.log('pool has ended'))
+// insert variants
+client.query(
+  `COPY variants (name, imageUrl, linkUrl, product_id) FROM
+    '/Users/javierzarate/Desktop/test/csvData/variants.csv'DELIMITER ',' CSV HEADER;`
+)
+.then(() => {
+  console.log('variants successfully seeded!');
+  console.timeEnd('seed');
+  client.end();
+})
+.catch(err => console.error(err));
