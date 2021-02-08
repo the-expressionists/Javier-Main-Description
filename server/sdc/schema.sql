@@ -12,7 +12,7 @@ CREATE DATABASE javier_items;
 --
 -- ---
 CREATE TABLE IF NOT EXISTS products (
-  product_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   category VARCHAR NOT NULL,
   reviews SMALLINT NOT NULL,
@@ -34,13 +34,9 @@ CREATE TABLE IF NOT EXISTS products (
 -- ---
 
 CREATE TABLE IF NOT EXISTS carouselImages (
-  carouselImages_id SERIAL,
+  id SERIAL PRIMARY KEY,
   carouselUrl VARCHAR NOT NULL,
-  product_id INT NOT NULL,
-  PRIMARY KEY(carouselImages_id),
-  CONSTRAINT fk_products
-    FOREIGN KEY (product_id)
-      REFERENCES products(product_id)
+  productId INT REFERENCES products (id)
 );
 
 -- ---
@@ -49,24 +45,10 @@ CREATE TABLE IF NOT EXISTS carouselImages (
 -- ---
 
 CREATE TABLE IF NOT EXISTS breadcrumbs (
-  breadcrumbs_id SERIAL,
-  br1 VARCHAR NOT NULL,
-  br2 VARCHAR NOT NULL,
-  br3 VARCHAR NOT NULL,
-  br4 VARCHAR NOT NULL,
-  br5 VARCHAR NOT NULL,
-  br6 VARCHAR NOT NULL,
-  url1 VARCHAR NOT NULL,
-  url2 VARCHAR NOT NULL,
-  url3 VARCHAR NOT NULL,
-  url4 VARCHAR NOT NULL,
-  url5 VARCHAR NOT NULL,
-  url6 VARCHAR NOT NULL,
-  product_id INT NOT NULL,
-  PRIMARY KEY(breadcrumbs_id),
-  CONSTRAINT fk_products
-    FOREIGN KEY (product_id)
-      REFERENCES products(product_id)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  url VARCHAR NOT NULL,
+  productId INT REFERENCES products (id)
 );
 
 -- ---
@@ -75,18 +57,18 @@ CREATE TABLE IF NOT EXISTS breadcrumbs (
 -- ---
 
 CREATE TABLE IF NOT EXISTS variants (
-  variants_id SERIAL,
+  id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   imageUrl VARCHAR NOT NULL,
   linkUrl VARCHAR NOT NULL,
-  product_id INT NOT NULL,
-  PRIMARY KEY(variants_id),
-  CONSTRAINT fk_products
-    FOREIGN KEY (product_id)
-      REFERENCES products(product_id)
+  productId INT REFERENCES products (id)
 );
+
+CREATE INDEX ON carouselImages (productId);
+CREATE INDEX ON breadcrumbs (productId);
+CREATE INDEX ON carouselImages (productId);
 
 -- ---
 -- excute file from terminal
--- psql -U javier postgres < server/sdc/schema.sql
+-- psql -U javier postgres < schema.sql
 -- ---

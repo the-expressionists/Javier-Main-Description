@@ -14,8 +14,10 @@
     "makeSamples": "node server/db/faker/generateData.js",
     "start": "./start.sh",
     "config": "psql -U javier postgres < server/sdc/schema.sql",
-    "write" : "node server/sdc/seed.jd",
-    "sdc_seed": "node server/server/seed.js"
+    "write-csv" : "node server/sdc/csvWriter.js",
+    "sdc-seed": "node server/sdc/seed.js",
+    "sdc-start": "node server/sdc_server.js",
+    "sdc-start-dev": "nodemon server/sdc_server.js"
   },
   "repository": {
     "type": "git",

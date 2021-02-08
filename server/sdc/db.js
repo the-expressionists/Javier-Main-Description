@@ -14,18 +14,6 @@ client.connect((err) => {
     console.log('Connected to DB!')
 });
 
-const getItems = (request, response) => {
-  const id = parseInt(request.params.id)
-
-  client.query('SELECT * FROM items WHERE product_id < 10', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
-
 module.exports = {
-  getItems,
   client
 };

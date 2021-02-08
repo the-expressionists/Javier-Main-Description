@@ -1,13 +1,14 @@
-const { client } = require('./db.js');
+const { client: db } = require('./db.js');
+const path = require('path');
 
 console.time('total seed time');
 console.time('product seed time');
 // insert products
-client.query(
+db.query(
   `COPY products (name, category, reviews, averageRating, liked,\
     price, shortName, longDescription, thumbImageURL, articleNumber,\
     variantProduct, variantType, variantCategory) FROM
-    '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/products.csv'DELIMITER ',' CSV HEADER;`
+    '${path.resolve(__dirname + '/csvData/products.csv')}'DELIMITER ',' CSV;`
 )
 .then(() => {
   console.timeEnd('product seed time');
@@ -17,9 +18,9 @@ client.query(
 .catch(err => console.error(err));
 
 // insert carouselImages
-client.query(
-  `COPY carouselImages (carouselUrl, product_id) FROM
-    '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/images.csv'DELIMITER ',' CSV HEADER;`
+db.query(
+  `COPY carouselImages (carouselUrl, productId) FROM
+    '${path.resolve(__dirname + '/csvData/images.csv')}'DELIMITER ',' CSV;`
 )
 .then(() => {
   console.timeEnd('carouselImages seed time');
@@ -29,10 +30,9 @@ client.query(
 .catch(err => console.error(err));
 
 // insert breadcrumbs
-client.query(
-  `COPY breadcrumbs (br1, url1, br2, url2, br3, url3, br4, url4, br5, url5,\
-    br6, url6, product_id) FROM
-    '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/breadcrumbs.csv'DELIMITER ',' CSV HEADER;`
+db.query(
+  `COPY breadcrumbs (name, url, productId) FROM
+    '${path.resolve(__dirname + '/csvData/breadcrumbs.csv')}'DELIMITER ',' CSV;`
 )
 .then(() => {
   console.timeEnd('breadcrumbs seed time');
@@ -42,14 +42,14 @@ client.query(
 .catch(err => console.error(err));
 
 // insert variants
-client.query(
-  `COPY variants (name, imageUrl, linkUrl, product_id) FROM
-    '/Users/javierzarate/Documents/hrr50/SDC/Javier-Main-Description/server/sdc/csvData/variants.csv'DELIMITER ',' CSV HEADER;`
+db.query(
+  `COPY variants (name, imageUrl, linkUrl, productId) FROM
+    '${path.resolve(__dirname + '/csvData/variants.csv')}'DELIMITER ',' CSV;`
 )
 .then(() => {
   console.timeEnd('variants seed time');
   console.log('DB successfully seeded!\n');
   console.timeEnd('total seed time');
-  client.end();
+  db.end();
 })
 .catch(err => console.error(err));
