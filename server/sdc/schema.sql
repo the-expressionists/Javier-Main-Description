@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS variants (
 
 CREATE INDEX ON carouselImages (productId);
 CREATE INDEX ON breadcrumbs (productId);
-CREATE INDEX ON carouselImages (productId);
+CREATE INDEX ON variants (productId);
 
 -- ---
 -- excute file from terminal

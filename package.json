@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "products-service",
   "version": "1.0.0",
-  "description": "Joseph Toney's Main Description Service Module",
+  "description": "Main Description Service Module",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
@@ -14,7 +14,7 @@
     "makeSamples": "node server/db/faker/generateData.js",
     "start": "./start.sh",
     "config": "psql -U javier postgres < server/sdc/schema.sql",
-    "write-csv" : "node server/sdc/csvWriter.js",
+    "write-csv": "node server/sdc/csvWriter.js",
     "sdc-seed": "node server/sdc/seed.js",
     "sdc-start": "node server/sdc_server.js",
     "sdc-start-dev": "nodemon server/sdc_server.js"
