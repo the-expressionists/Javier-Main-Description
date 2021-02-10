@@ -1,7 +1,7 @@
 const { HOST, USER, PASSWORD, DB, PORT } = require('./db.config');
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   user: USER,
   host: HOST,
   database: DB,
@@ -9,11 +9,11 @@ const client = new Client({
   port: PORT,
 });
 
-client.connect((err) => {
+pool.connect((err) => {
   err ? console.error(err) :
     console.log('Connected to DB!')
 });
 
 module.exports = {
-  client
+  pool
 };

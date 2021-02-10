@@ -40,6 +40,7 @@ class MainDescription extends React.Component {
       });
     } else {
       requests.findByID(itemID, data => {
+        console.log("else: ", data)
         if (data !== "") {
           this.setState({
             product: data

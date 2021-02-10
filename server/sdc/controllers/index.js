@@ -1,4 +1,4 @@
-const { client: db } = require('../db.js');
+const { pool: db } = require('../db.js');
 
 exports.getProductById = (id, cb) => {
   const prodQry = `SELECT * FROM products WHERE id=${id}`;

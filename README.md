@@ -11,12 +11,26 @@ https://docs.mongodb.com/manual/installation/
 
 ## Run the server
 ```
-$ npm run start
+$ npm run sdc-start
 ```
 
 ## Seed the service
-If this is your first time running the server, seed the mongo database with sample data:
+*If this is your first time running the server, seed the PostgreSQL database with sample data:*
+
+Create tables in database
 
 ```
-$ npm run seed
+$ npm run config
+```
+
+Generate data on CSV files
+
+```
+$ npm run write-csv
+```
+
+Seed Database
+
+```
+$ npm run sdc-seed
 ```

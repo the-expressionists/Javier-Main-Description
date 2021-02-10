@@ -13,7 +13,7 @@ class Stylepicker extends React.Component {
 
   componentDidMount() {
     this.setState({
-      variantType: this.props.product.variantType
+      varianttype: this.props.product.varianttype
     });
   }
 
@@ -28,9 +28,9 @@ class Stylepicker extends React.Component {
   }
 
   render() {
-    let variantType = this.state.variantType ? this.state.variantType : this.props.product.variantType;
+    let variantType = this.state.varianttype ? this.state.varianttype : this.props.product.varianttype;
 
-    if (!this.props.product.variantProduct) {
+    if (!this.props.product.variantproduct) {
       return null;
     } else {
       return (
@@ -38,7 +38,7 @@ class Stylepicker extends React.Component {
           <button className={styles['stylepicker-button']}>
             <div className={styles['stylepicker-button-text']}>
               <div className={styles['inline-block']}>
-                <div className={styles['variant-type']}>{this.props.product.variantCategory}</div>
+                <div className={styles['variant-type']}>{this.props.product.variantcategory}</div>
                 <div className={styles['purchase-text']}>{variantType}</div>
               </div>
               <div className={styles['inline-block']}>❯</div>
@@ -48,9 +48,9 @@ class Stylepicker extends React.Component {
             {
               this.props.product.variants.map( variant => {
                 return (
-                  <a key={variant._id} onMouseOver={this.handleHover} name={variant.name} href={variant.linkUrl} className={styles['stylepicker-variant-item']}>
+                  <a key={variant.id} onMouseOver={this.handleHover} name={variant.name} href={variant.imageurl} className={styles['stylepicker-variant-item']}>
                     <div className={styles['variant-image-container']}>
-                      <img src={variant.imageUrl} className={styles['variant-image']}></img>
+                      <img src={variant.imageurl} className={styles['variant-image']}></img>
                     </div>
                   </a>
                 );

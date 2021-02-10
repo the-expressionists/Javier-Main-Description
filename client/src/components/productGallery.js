@@ -18,7 +18,7 @@ class ProductGallery extends React.Component {
     console.log('opening modal');
     this.setState({
       modalDisplay: true
-    });   
+    });
   }
 
   closeModal() {
@@ -33,9 +33,9 @@ class ProductGallery extends React.Component {
         {
           this.props.product.carouselImages.map( image => {
             return (
-              <div onClick={this.openModal} className={styles['product-gallery-item']} key={image._id}>
+              <div onClick={this.openModal} className={styles['product-gallery-item']} key={image.id}>
                   <span className={styles['product-gallery-border']}>
-                      <img className={styles['product-gallery-image']} src={image.imageUrl}></img>
+                      <img className={styles['product-gallery-image']} src={image.carouselurl}></img>
                   </span>
               </div>
             );
@@ -44,7 +44,7 @@ class ProductGallery extends React.Component {
         <Carousel display={this.state.modalDisplay} carouselImages={this.props.product.carouselImages} closeModal={this.closeModal} />
       </div>
     );
-  } 
+  }
 }
 
 export default ProductGallery;
