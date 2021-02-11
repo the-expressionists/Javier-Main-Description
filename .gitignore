@@ -11,7 +11,7 @@ server/db/sampleData.json
 
 #  SDC
 
-server/sdc/db.config.js
+server/sdc/db/db.config.js
 
 server/sdc/csvData/products.csv
 server/sdc/csvData/images.csv
