@@ -14,54 +14,39 @@ const productData = () => {
   const longDescription = faker.lorem.paragraph();
   const thumbImageUrl = `https://source.unsplash.com/collection/1163637/100x100`;
   const articleNumber = `${faker.random.number(999)}.${faker.random.number(999)}.${faker.random.number(999)}`;
-  let variantProduct = false;
-  let variantType = null;
-  let  variantCategory = null;
+  const variantProduct = true;
+  const variantType = `${faker.name.firstName()} ${faker.commerce.productName()}`;;
+  const  variantCategory = `${faker.commerce.product()}`;
 
   let data = `${name},${category},${reviews},${averageRating},${liked},${price},\
-  ${shortName},${longDescription},${thumbImageUrl},${articleNumber},`;
+  ${shortName},${longDescription},${thumbImageUrl},${articleNumber}, ${variantProduct},\
+  ${variantType},${variantCategory}`;
 
-  // not all items will have variants
-  // 66.6% chance of variant
-  if (randNum(1, 5) <= 3) {
-    variantProduct = true;
-    variantType = `${faker.name.firstName()} ${faker.commerce.productName()}`;
-    variantCategory = faker.commerce.product();
-    return data += `${variantProduct},${variantType},${variantCategory}`;
-  }
-  return data += `${variantProduct},${variantType},${variantCategory}`;
+  return data;
 };
 
 
-const carouselImages = () => {
+const carouselImages = (id) => {
   const size =  `${randNum(300, 400)}x${randNum(300, 400)}`;
   const imageUrl = 'https://source.unsplash.com/collection/1163637/' + size;
-  const product_id = randNum(1, 1000000);
 
-  return `${imageUrl},${product_id}`;
+  return `${imageUrl},${id}`;
 }
 
-const variants = () => {
+const variants = (id) => {
   const name =  `${faker.name.firstName()} ${faker.commerce.productName()}`;
   const imageUrl = `https://source.unsplash.com/collection/1163637/${randNum(54, 58)}x${randNum(55, 59)}`;
   const linkUrl = faker.internet.url();
-  const product_id = randNum(1, 1000000);
 
-  return `${name},${imageUrl},${linkUrl},${product_id}`;
+
+  return `${name},${imageUrl},${linkUrl},${id}`;
 }
 
-const breadcrumbs = (max) => {
-  let data = ``;
-  const product_id = randNum(1, 1000000);
+const breadcrumbs = (id) => {
+  const name = faker.commerce.department();
+  const url = faker.internet.url();
 
-  for (let i = 0; i < 6; i++) {
-    let name = faker.commerce.department();
-    let url = faker.internet.url();
-      data += `${name},${url},`;
-  }
-  data += `${product_id}`;
-
-  return data;
+  return `${name},${url},${id}`;
 }
 
 module.exports = {

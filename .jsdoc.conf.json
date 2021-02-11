@@ -1,7 +1,0 @@
-{
-    "source": {
-        "include": ["."],
-        "includePattern": ".+\\.[jt]s(doc|x)?$",
-        "excludePattern": "node_modules"
-    }
-}

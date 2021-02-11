@@ -1,40 +1,36 @@
 {
-  "name": "my-webpack-project",
+  "name": "products-service",
   "version": "1.0.0",
-  "description": "Joseph Toney's Main Description Service Module",
+  "description": "Main Description Service Module",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack -w",
-    "nodemon": "nodemon server/index.js",
-    "node": "node server/index.js",
-    "test": "jest",
-    "mongodo": "sudo systemctl start mongod",
-    "seed": "node server/db/seed.js",
-    "makeSamples": "node server/db/faker/generateData.js",
-    "start": "./start.sh",
-    "config": "psql -U javier postgres < server/sdc/schema.sql",
-    "write" : "node server/sdc/seed.jd",
-    "sdc_seed": "node server/server/seed.js"
+    "config": "psql -U javier postgres < server/sdc/db/schema.sql",
+    "write-csv": "node server/sdc/seed/db/csvWriter.js",
+    "sdc-seed": "node server/sdc/seed.js",
+    "sdc-start": "node server/sdc_server.js",
+    "sdc-start-dev": "nodemon server/sdc_server.js",
+    "load-test": "k6 run server/sdc/tests/stressTest.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wumbabum/MainDescriptionService.git"
+    "url": "git+https://github.com/the-expressionists/Javier-Main-Description.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wumbabum/MainDescriptionService/issues"
+    "url": "https://github.com/the-expressionists/Javier-Main-Description/issues"
   },
-  "homepage": "https://github.com/wumbabum/MainDescriptionService#readme",
+  "homepage": "https://github.com/the-expressionists/Javier-Main-Description#readme",
   "dependencies": {
     "@webpack-cli/init": "^1.1.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
-    "mongoose": "^5.11.12",
+    "newrelic": "^7.1.1",
     "path": "^0.12.7",
     "pg": "^8.5.1",
     "react": "^17.0.1",

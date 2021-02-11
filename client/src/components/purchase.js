@@ -21,8 +21,8 @@ class Purchase extends React.Component {
             <div className={styles['price-container']}>
               <div className={styles['price-infobox inline-block']}>
                 <div className={styles['price-name']}>{this.props.product.name}</div>
-                <div className={styles['price-description']}>{this.props.product.shortName + ((this.props.product.variantProduct) ? ',' : '')}</div>
-                <div className={styles['purchase-text']}>{this.props.product.variantType}</div>
+                <div className={styles['price-description']}>{this.props.product.shortname + ((this.props.product.variantproduct) ? ',' : '')}</div>
+                <div className={styles['purchase-text']}>{this.props.product.varianttype}</div>
               </div>
               <div>
                 <div className={styles['price-tag-container']}>
@@ -33,7 +33,7 @@ class Purchase extends React.Component {
               </div>
             </div>
             <div>
-              <ReviewStars stars={this.props.product.averageRating} include={true} reviews={this.props.product.reviews}/>
+              <ReviewStars stars={this.props.product.averagerating} include={true} reviews={this.props.product.reviews}/>
             </div>
         </div>
         <Stylepicker product={this.props.product} />

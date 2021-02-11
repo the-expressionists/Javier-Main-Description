@@ -1,13 +1,15 @@
 .DS_STORE
+.vscode
 node_modules
 client/dist/mainDescription.*.css
 client/dist/container.bundle*
 client/dist/mainDescription.bundle*
-env
+
+# env
 .yo-rc.json
 server/db/sampleData.json
 
-// SDC
+#  SDC
 
 server/sdc/db.config.js
 
@@ -15,3 +17,9 @@ server/sdc/csvData/products.csv
 server/sdc/csvData/images.csv
 server/sdc/csvData/breadcrumbs.csv
 server/sdc/csvData/variants.csv
+
+server/sdc/csvData/batches
+
+# new relic
+
+newrelic*
