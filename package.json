@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack -w",
-    "config": "psql -U javier postgres < server/sdc/schema.sql",
-    "write-csv": "node server/sdc/csvWriter.js",
+    "config": "psql -U javier postgres < server/sdc/db/schema.sql",
+    "write-csv": "node server/sdc/seed/db/csvWriter.js",
     "sdc-seed": "node server/sdc/seed.js",
     "sdc-start": "node server/sdc_server.js",
     "sdc-start-dev": "nodemon server/sdc_server.js",

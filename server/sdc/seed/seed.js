@@ -1,4 +1,4 @@
-const { client: db } = require('./db.js');
+const { pool: db } = require('../db/db.js');
 const path = require('path');
 
 console.time('total seed time');
