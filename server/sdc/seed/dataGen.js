@@ -2,8 +2,9 @@ const faker = require('faker');
 
 const randNum = (min, max) => faker.random.number({ 'min': min, 'max': max });
 
-const productData = () => {
+const productData = (i) => {
   // items tend to have human names
+  const id = i;
   const name = `${faker.name.firstName()} ${faker.commerce.productName()}`;
   const category = faker.commerce.product();
   const reviews = randNum(1, 5);
@@ -18,7 +19,7 @@ const productData = () => {
   const variantType = `${faker.name.firstName()} ${faker.commerce.productName()}`;;
   const  variantCategory = `${faker.commerce.product()}`;
 
-  let data = `${name},${category},${reviews},${averageRating},${liked},${price},\
+  let data = `${id},${name},${category},${reviews},${averageRating},${liked},${price},\
   ${shortName},${longDescription},${thumbImageUrl},${articleNumber}, ${variantProduct},\
   ${variantType},${variantCategory}`;
 
