@@ -27,9 +27,8 @@ class Carousel extends React.Component {
 
   handleLeftClick() {
     if (this.state.index > 0) {
-      let newIndex = this.state.index - 1; 
+      let newIndex = this.state.index - 1;
       let newPosition = 0 - newIndex * window.innerHeight;
-      
       this.setState({
         index: newIndex,
         position: newPosition
@@ -39,7 +38,7 @@ class Carousel extends React.Component {
 
   handleRightClick() {
     if (this.state.index < this.props.carouselImages.length - 1) {
-      let newIndex = this.state.index + 1; 
+      let newIndex = this.state.index + 1;
       let newPosition = 0 - newIndex * window.innerHeight;
 
       this.setState({
@@ -48,15 +47,15 @@ class Carousel extends React.Component {
       })
     }
   }
-  
+
   handleScroll(event) {
 
   }
 
   handleSlider() {
-    
+
   }
- 
+
   render() {
     //Don't render the modal unless display is true.
     if (this.props.display === false) {
@@ -71,18 +70,19 @@ class Carousel extends React.Component {
               </div>
             </button>
           </div>
-          <div className={styles['carousel-container']}>  
+          <div className={styles['carousel-container']}>
             <div className={styles['left-click']} onClick={this.handleLeftClick}>
               <span className={styles['click-inner']}>{svgs.left}</span>
-            </div>        
+            </div>
             <div className={styles['carousel-images']} style={{left: this.state.position}}>
               <div className={styles['carousel-host']} onScroll={this.handleScroll}>
                 {
                   this.props.carouselImages.map( image => {
+                    let id = (image.id) + 5;
                     return (
-                      <div className={styles['carousel-item']} key={image._id}>
+                      <div className={styles['carousel-item']} key={id}>
                           <span className={styles['carousel-item-border']}>
-                              <img className={styles['carousel-image']} src={image.imageUrl}></img>
+                              <img className={styles['carousel-image']} src={image.carouselurl}></img>
                           </span>
                       </div>
                     );
@@ -92,10 +92,10 @@ class Carousel extends React.Component {
             </div>
             <div className={styles['right-click']} onClick={this.handleRightClick}>
               <span className={styles['click-inner']}>{svgs.right}</span>
-            </div>        
+            </div>
             <div className={styles['carousel-scrollbar']}>
               <div className={styles['carousel-backbar']}>
-                <div 
+                <div
                   className={styles['carousel-slider']}
                   ></div>
               </div>
@@ -104,7 +104,7 @@ class Carousel extends React.Component {
         </div>
       );
     }
-  } 
+  }
 }
 // style={{ left: scrollBoxLeft }}
 // onMouseDown={handleSliderMouseDown}

@@ -30,7 +30,7 @@ class MainDescription extends React.Component {
       }
     };
   }
-  
+
   componentDidMount() {
     if (itemID === 'no id') {
       requests.findOne(data => {
@@ -40,6 +40,7 @@ class MainDescription extends React.Component {
       });
     } else {
       requests.findByID(itemID, data => {
+        console.log("else: ", data)
         if (data !== "") {
           this.setState({
             product: data

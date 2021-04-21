@@ -9,8 +9,8 @@ let ProductDetails = (props) => {
         <div className={styles['inline-block']}>
           <div>{props.title}</div>
           {
-            props.isReview ? 
-            <ReviewStars include={props.isReview} stars={props.product.averageRating} reviews={props.product.reviews}/>
+            props.isReview ?
+            <ReviewStars include={props.isReview} stars={props.product.averagerating} reviews={props.product.reviews}/>
             : null
           }
         </div>
@@ -20,4 +20,4 @@ let ProductDetails = (props) => {
   );
 };
 
-export default ProductDetails; 
+export default ProductDetails;
